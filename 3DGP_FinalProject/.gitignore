@@ -71,6 +71,5 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
 # IDE
-.vs/
-/.vscode/
+.vscode/
 *.vsconfig
