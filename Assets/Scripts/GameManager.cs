@@ -44,5 +44,10 @@ namespace COVID_RUSH
             mGameState = GameState.Start;
             EventManager.Notify("onSceneSwitch", this, (int) mGameState);
         }
+        public void SwitchToSettingScene()
+        {
+            mGameState = GameState.Setting;
+            EventManager.Notify("onSceneSwitch", this, (int) mGameState);
+        }
     }
 }
