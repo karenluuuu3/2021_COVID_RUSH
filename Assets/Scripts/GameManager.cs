@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace COVID_RUSH
 {
@@ -8,6 +9,8 @@ namespace COVID_RUSH
     {
         public static GameManager instance = null;
         private int CurrentLevel = 1;
+        [SerializeField]
+        private int currentVolume = 50;
 
         private EventStore EventManager = EventStore.instance;
         public enum GameState : int { Start, Information, Setting, Gaming, Ended }
@@ -48,6 +51,14 @@ namespace COVID_RUSH
         {
             mGameState = GameState.Setting;
             EventManager.Notify("onSceneSwitch", this, (int) mGameState);
+        }
+
+        public void SetVolume(float volume)
+        {
+            currentVolume = (int) volume;
+            Dictionary<string, string> variableDict = new Dictionary<string, string>();
+            variableDict.Add("volume", currentVolume.ToString() + "%");
+            EventManager.Notify("onVariableChange", this, variableDict);
         }
     }
 }
