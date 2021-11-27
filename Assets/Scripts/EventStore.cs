@@ -5,9 +5,9 @@ using UnityEngine;
 namespace COVID_RUSH
 {
     // 提供一個 dictionary 讓事件觸發者 & 接收者可以 listen & notify
-    public class EventStore : MonoBehaviour
+    public class EventStore
     {
-        public static EventStore instance = null;
+        public static EventStore instance = new EventStore();
 
         private Dictionary<string, List<LisenterInfo>> EventDictionary = new Dictionary<string, List<LisenterInfo>>();
 
@@ -21,11 +21,6 @@ namespace COVID_RUSH
         public EventStore Instance
         {
             get { return instance; }
-        }
-
-        void Awake()
-        {
-            instance = this;
         }
 
         // 註冊事件: 綁定事件(eventName)的 listener(owner)以及觸發時對應的 action(func)
@@ -47,6 +42,7 @@ namespace COVID_RUSH
                 }
 
                 EventDictionary[eventName][registeredID] = lisenter;
+                return;
             }
 
             EventDictionary.Add(eventName, new List<LisenterInfo> { lisenter });
@@ -67,12 +63,15 @@ namespace COVID_RUSH
         // 觸發事件: 有綁定事件(eventName)的 listener(listener)會在此時收到觸發者(sender)的更新資訊(param)
         public void Notify(string eventName, Component sender, object param = null)
         {
-            if (EventDictionary.ContainsKey(eventName))
+            if (!EventDictionary.ContainsKey(eventName))
             {
-                foreach (var listener in EventDictionary[eventName])
-                {
-                    listener.action(sender, param);
-                }
+                Debug.LogError("Event '" + eventName + "' doesn't exist.");
+                return;
+            }
+
+            foreach (var listener in EventDictionary[eventName])
+            {
+                listener.action(sender, param);
             }
         }
 

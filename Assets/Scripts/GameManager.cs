@@ -6,21 +6,43 @@ namespace COVID_RUSH
 {
     public class GameManager : MonoBehaviour
     {
-        private enum GameState : byte { Start, Gaming, Ended }
-
+        public static GameManager instance = null;
         private int CurrentLevel = 1;
 
-        // private EventStore EventManager = new EventStore();
+        private EventStore EventManager = EventStore.instance;
+        public enum GameState : int { Start, Information, Setting, Gaming, Ended }
 
-        private void Awake()
+        private GameState mGameState = GameState.Start;
+
+        public GameManager Instance
         {
-
+            get { return instance; }
         }
 
-        // Update is called once per frame
-        void Update()
+        public GameState gameState
         {
+            get { return mGameState;  }
+        }
 
+        void Awake()
+        {
+            if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+        }
+
+        public void SwitchToInformationScene()
+        {
+            mGameState = GameState.Information;
+            EventManager.Notify("onSceneSwitch", this, (int) mGameState);
+        }
+
+        public void SwitchToStartScene()
+        {
+            mGameState = GameState.Start;
+            EventManager.Notify("onSceneSwitch", this, (int) mGameState);
         }
     }
 }
