@@ -10,26 +10,61 @@ public class Player : MonoBehaviour {
 		public float turnSpeed = 400.0f;
 		private Vector3 moveDirection = Vector3.zero;
 		public float gravity = 20.0f;
+		public int playerState=0;	//0=idle	1=walk	2=jump
+		
 
 		void Start () {
 			controller = GetComponent <CharacterController>();
 			anim = gameObject.GetComponentInChildren<Animator>();
+			anim.SetInteger ("AnimationPar", playerState);
 		}
 
-		void Update (){
-			if (Input.GetKey ("w")) {
-				anim.SetInteger ("AnimationPar", 1);
-			}  else {
-				anim.SetInteger ("AnimationPar", 0);
+		void KeyEnventCon(){
+			if (Input.GetKey ("s")) {
+				if(playerState!=2)	playerState = 1;
+				else{
+					moveDirection.z = (transform.forward * Input.GetAxis("Vertical") * speed).z;
+					moveDirection.x = (transform.forward * Input.GetAxis("Vertical") * speed).x;
+				}
+				//else moveDirection.z =-5;
 			}
+			else if (Input.GetKey ("w")){
+				if(playerState!=2) playerState = 1;
+				else{
+					moveDirection.z = (transform.forward * Input.GetAxis("Vertical") * speed).z;
+					moveDirection.x = (transform.forward * Input.GetAxis("Vertical") * speed).x;
+				}
+				//else moveDirection.z =5;
+			}
+			else if (Input.GetKey (KeyCode.Space)){
+				if (playerState!=2){
+					moveDirection.y=20;
+					playerState = 2;
+				}
+			}  
+			else if(Input.GetKeyUp ("w")||Input.GetKeyUp ("s")&&playerState!=2){
+				moveDirection.z=0;
+				playerState = 0;
+			}
+			
+		}
 
+		void MovementCon(){
 			if(controller.isGrounded){
 				moveDirection = transform.forward * Input.GetAxis("Vertical") * speed;
+				if (playerState==2)	playerState = 0;	//if is jumping
+				//anim.SetInteger ("AnimationPar", 0);
 			}
-
 			float turn = Input.GetAxis("Horizontal");
 			transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
 			controller.Move(moveDirection * Time.deltaTime);
 			moveDirection.y -= gravity * Time.deltaTime;
+		}
+
+		void Update (){
+			KeyEnventCon();
+			MovementCon();
+			anim.SetInteger ("AnimationPar", playerState);
+			
 		}
 }

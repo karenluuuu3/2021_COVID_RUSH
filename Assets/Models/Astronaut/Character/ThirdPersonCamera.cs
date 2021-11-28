@@ -25,6 +25,15 @@ public class ThirdPersonCamera : MonoBehaviour
     {
         currentX += Input.GetAxis("Mouse X");
         currentY += Input.GetAxis("Mouse Y");
+        if (distance<=10 && distance>=2){
+            distance-=Input.GetAxis("Mouse ScrollWheel")*100*Time.deltaTime;
+        }
+        else if (distance>10){
+            distance=10;
+        }
+        else if (distance<2){
+            distance=2;
+        }
 
         currentY = Mathf.Clamp(currentY, Y_ANGLE_MIN, Y_ANGLE_MAX);
     }
