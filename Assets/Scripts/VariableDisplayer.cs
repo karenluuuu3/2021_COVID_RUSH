@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 namespace COVID_RUSH
 {
@@ -10,9 +11,9 @@ namespace COVID_RUSH
         [SerializeField]
         private string variableName;
         [SerializeField]
-        private Text displayer;
+        private TMP_Text displayer;
 
-        public VariableDisplayer(string _variableName, Text _displayer)
+        public VariableDisplayer(string _variableName, TMP_Text _displayer)
         {
             variableName = _variableName;
             displayer = _displayer;
