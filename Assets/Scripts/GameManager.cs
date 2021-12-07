@@ -9,7 +9,6 @@ namespace COVID_RUSH
     {
         public static GameManager instance = null;
         private int CurrentLevel = 1;
-        [SerializeField]
         private int currentVolume = 50;
 
         private EventStore EventManager = EventStore.instance;
@@ -39,18 +38,26 @@ namespace COVID_RUSH
         public void SwitchToInformationScene()
         {
             mGameState = GameState.Information;
-            EventManager.Notify("onSceneSwitch", this, (int) mGameState);
+            EventManager.Notify("onSceneSwitch", this, mGameState);
         }
 
         public void SwitchToStartScene()
         {
             mGameState = GameState.Start;
-            EventManager.Notify("onSceneSwitch", this, (int) mGameState);
+            EventManager.Notify("onSceneSwitch", this, mGameState);
         }
         public void SwitchToSettingScene()
         {
             mGameState = GameState.Setting;
-            EventManager.Notify("onSceneSwitch", this, (int) mGameState);
+            EventManager.Notify("onSceneSwitch", this, mGameState);
+        }
+
+        public void SwitchToNewGame()
+        {
+            mGameState = GameState.Gaming;
+            // TODO: Use an enum to map state-to-code
+            // 1 = scene of level 1
+            EventManager.Notify("onLoadScene", this, 1);
         }
 
         public void SetVolume(float volume)

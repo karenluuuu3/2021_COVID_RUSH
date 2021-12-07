@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace COVID_RUSH
 {
@@ -13,10 +14,16 @@ namespace COVID_RUSH
         {
             mAnimator = GetComponent<Animator>();
             mEventStore.Register("onSceneSwitch", this, (_, param) => Switch(param));
+            mEventStore.Register("onLoadScene", this, (_, param) => Load(param));
         }
         public void Switch(object gameState)
         {
             mAnimator.SetInteger("GameState", (int)gameState);
+        }
+
+        public void Load(object sceneIdx)
+        {
+            SceneManager.LoadScene((int)sceneIdx);
         }
     }
 }
