@@ -8,9 +8,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 2
-    m_ConditionEvent: isShow
-    m_EventTreshold: 0
+  - m_ConditionMode: 7
+    m_ConditionEvent: popupType
+    m_EventTreshold: 3
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 337124151356075295}
   m_Solo: 0
@@ -33,9 +33,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: isShow
-    m_EventTreshold: 0
+  - m_ConditionMode: 6
+    m_ConditionEvent: popupType
+    m_EventTreshold: 3
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 4242679804478876632}
   m_Solo: 0
@@ -61,6 +61,12 @@ AnimatorController:
   m_AnimatorParameters:
   - m_Name: isShow
     m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: popupType
+    m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
