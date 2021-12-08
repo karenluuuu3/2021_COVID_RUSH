@@ -12,7 +12,7 @@ namespace COVID_RUSH
         private int currentVolume = 50;
 
         private EventStore EventManager = EventStore.instance;
-        public enum GameState : int { Start, Information, Setting, Gaming, Ended }
+        public enum GameState : int { Start, Information, Setting, Gaming, Wasted, Ended }
 
         private GameState mGameState = GameState.Start;
 
@@ -33,6 +33,17 @@ namespace COVID_RUSH
                 instance = this;
                 DontDestroyOnLoad(gameObject);
             }
+        }
+
+        private void Start()
+        {
+            EventManager.Register("showWasted", this, (c,p) => ShowWasted());
+        }
+
+        private void FixedUpdate()
+        {
+            // TODO: Remove this developer function
+            MyDeveloperShortCut();
         }
 
         public void SwitchToInformationScene()
@@ -66,6 +77,36 @@ namespace COVID_RUSH
             Dictionary<string, string> variableDict = new Dictionary<string, string>();
             variableDict.Add("volume", currentVolume.ToString() + "%");
             EventManager.Notify("onVariableChange", this, variableDict);
+        }
+
+        private void MyDeveloperShortCut()
+        {
+            if (mGameState != GameState.Gaming) return;
+            if (Input.GetKeyDown(KeyCode.F1))
+            {
+                ShowWasted();
+            }
+            if (Input.GetKeyDown(KeyCode.F2))
+            {
+                ShowCongratulation();
+            }
+            if (Input.GetKeyDown(KeyCode.F3))
+            {
+                ShowLoading();
+            }
+        }
+
+        private void ShowWasted()
+        {
+            EventManager.Notify("onPopupWasted", this, null);
+        }
+        private void ShowCongratulation()
+        {
+            EventManager.Notify("onPopupCongratulation", this, null);
+        }
+        private void ShowLoading()
+        {
+            EventManager.Notify("onPopupLoading", this, null);
         }
     }
 }

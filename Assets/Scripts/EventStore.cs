@@ -40,11 +40,11 @@ namespace COVID_RUSH
                     EventDictionary[eventName].Add(lisenter);
                     return;
                 }
-
+                Debug.Log("bind " + eventName + " ok");
                 EventDictionary[eventName][registeredID] = lisenter;
                 return;
             }
-
+            Debug.Log("bind " + eventName + " ok too");
             EventDictionary.Add(eventName, new List<LisenterInfo> { lisenter });
         }
 
@@ -68,7 +68,6 @@ namespace COVID_RUSH
                 Debug.LogError("Event '" + eventName + "' doesn't exist.");
                 return;
             }
-
             foreach (var listener in EventDictionary[eventName])
             {
                 listener.action(sender, param);
