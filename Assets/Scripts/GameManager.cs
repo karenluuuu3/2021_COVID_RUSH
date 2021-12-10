@@ -94,6 +94,10 @@ namespace COVID_RUSH
             {
                 ShowLoading();
             }
+            if (Input.GetKeyDown(KeyCode.F4))
+            {
+                // AddSyringe();
+            }
         }
 
         private void ShowWasted()
