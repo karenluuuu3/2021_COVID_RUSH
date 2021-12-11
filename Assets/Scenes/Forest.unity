@@ -4508,6 +4508,11 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300008, guid: 24a759921bedc2541881a0535a7bfcc8, type: 3}
+--- !u!4 &237724728 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8461506822284334237, guid: 27ead5df8d84082489f7dfd2b8251902, type: 3}
+  m_PrefabInstance: {fileID: 3366275787437811795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &239240103
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17364,6 +17369,11 @@ Rigidbody:
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 5916fc208609587449d830b60a5a8205, type: 3}
   m_PrefabInstance: {fileID: 883673621}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &888491856 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3366515188327699613, guid: 27ead5df8d84082489f7dfd2b8251902, type: 3}
+  m_PrefabInstance: {fileID: 3366275787437811795}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &892051981
 PrefabInstance:
@@ -43022,6 +43032,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1886836937630504027, guid: 27ead5df8d84082489f7dfd2b8251902, type: 3}
+      propertyPath: lookAt
+      value: 
+      objectReference: {fileID: 888491856}
+    - target: {fileID: 1886836937630504027, guid: 27ead5df8d84082489f7dfd2b8251902, type: 3}
+      propertyPath: camTransform
+      value: 
+      objectReference: {fileID: 237724728}
     - target: {fileID: 3365167631436679011, guid: 27ead5df8d84082489f7dfd2b8251902, type: 3}
       propertyPath: m_Name
       value: Player
@@ -43070,8 +43088,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3434140313114381481, guid: 27ead5df8d84082489f7dfd2b8251902, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 27ead5df8d84082489f7dfd2b8251902, type: 3}
+--- !u!1 &3366275787437811796 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 782949170614502604, guid: 27ead5df8d84082489f7dfd2b8251902, type: 3}
+  m_PrefabInstance: {fileID: 3366275787437811795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!81 &3366275787437811797
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3366275787437811796}
+  m_Enabled: 1
 --- !u!1001 &4383114088565261276
 PrefabInstance:
   m_ObjectHideFlags: 0
