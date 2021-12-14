@@ -44,7 +44,7 @@ namespace COVID_RUSH
                 EventDictionary[eventName][registeredID] = lisenter;
                 return;
             }
-            Debug.Log("bind " + eventName + " ok too");
+            Debug.Log("bind (new) " + eventName + " ok");
             EventDictionary.Add(eventName, new List<LisenterInfo> { lisenter });
         }
 

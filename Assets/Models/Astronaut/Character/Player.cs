@@ -1,10 +1,12 @@
 using UnityEngine;
 using System.Collections;
+using COVID_RUSH;
 
 public class Player : MonoBehaviour {
 
 		private Animator anim;
 		private CharacterController controller;
+		private EventStore mEventStore = EventStore.instance;
 
 		public float speed = 600.0f;
 		public float turnSpeed = 400.0f;
@@ -59,6 +61,10 @@ public class Player : MonoBehaviour {
 			transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
 			controller.Move(moveDirection * Time.deltaTime);
 			moveDirection.y -= gravity * Time.deltaTime;
+
+			// Notify this event to update minimap & compass
+			Vector2 newDirection = new Vector2(transform.forward.x, -transform.forward.z);
+			mEventStore.Notify("onChangeForward", this, newDirection);
 		}
 
 		void Update (){
