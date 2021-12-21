@@ -19,6 +19,7 @@ public class Player : MonoBehaviour {
 			controller = GetComponent <CharacterController>();
 			anim = gameObject.GetComponentInChildren<Animator>();
 			anim.SetInteger ("AnimationPar", playerState);
+			UpdateCompass();
 		}
 
 		void KeyEnventCon(){
@@ -61,7 +62,10 @@ public class Player : MonoBehaviour {
 			transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
 			controller.Move(moveDirection * Time.deltaTime);
 			moveDirection.y -= gravity * Time.deltaTime;
+		}
 
+		private void UpdateCompass()
+		{
 			// Notify this event to update minimap & compass
 			Vector2 newDirection = new Vector2(transform.forward.x, -transform.forward.z);
 			mEventStore.Notify("onChangeForward", this, newDirection);
@@ -70,6 +74,7 @@ public class Player : MonoBehaviour {
 		void Update (){
 			KeyEnventCon();
 			MovementCon();
+			UpdateCompass();
 			anim.SetInteger ("AnimationPar", playerState);
 			
 		}

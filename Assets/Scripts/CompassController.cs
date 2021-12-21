@@ -14,6 +14,8 @@ namespace COVID_RUSH
         private TMP_Text[] mIndicatorTextList;
         private int mMainDegree;
         private int mUnit = 10;
+        private float mBias = 0;
+        private float mAccumulatedBias = 0;
         private static Dictionary<int, string> mDegToDirectionDisplay = new Dictionary<int, string>
         {
             [0] = "N",
@@ -29,16 +31,39 @@ namespace COVID_RUSH
             mMainDegree = 0;
         }
 
-        void FixedUpdate()
+        private void UpdateMainIndicator(int deg)
         {
+            mMainDegree = deg;
             TMP_Text displayer = mainDirection.GetComponent<TMP_Text>();
             displayer.text = DegreeToDisplayString(mMainDegree);
+        }
 
+        private void UpdateOtherIndicator(float deg)
+        {
+            float bias = GetActualDegree(deg) - mMainDegree;
+
+            if (bias == mBias) return;
+            mBias = bias;
+
+            // if bias is small enough, just translate the indicator
+            if (Mathf.Abs(bias) < mUnit / 2)
+            {
+                int biasUnit = 5;
+                foreach (TMP_Text indicator in mIndicatorTextList)
+                {
+                    indicator.transform.localPosition += new Vector3(bias * biasUnit, 0, 0);
+                }
+                return;
+            }
+
+            // otherwise, update each indicator
             int indicatorLength = mIndicatorTextList.Length;
             int halfIndicator = Mathf.FloorToInt(indicatorLength / 2);
+            int indicatorWidth = 50;
             for (int i = 0; i < indicatorLength; i++)
             {
                 mIndicatorTextList[i].text = DegreeToDisplayString(mMainDegree + (i - halfIndicator) * mUnit);
+                mIndicatorTextList[i].transform.localPosition = new Vector3((i - indicatorLength / 2) * indicatorWidth, 0, 0);
             }
         }
 
@@ -60,12 +85,22 @@ namespace COVID_RUSH
         {
             return (int) Mathf.Round(degree / mUnit) * mUnit;
         }
+        private int GetActualDegree(float degree)
+        {
+            return (int) Mathf.Round(degree);
+        }
 
         private void ChangePlayerDirection(object direction)
         {
             Vector2 dir = (Vector2)direction;
             float deg = (Mathf.Atan2(dir.y, dir.x)) * (180 / Mathf.PI);
-            mMainDegree = GetApproximatedDegree(deg);
+            int approximatedDeg = GetApproximatedDegree(deg);
+
+            if (approximatedDeg != mMainDegree)
+            {
+                UpdateMainIndicator(approximatedDeg);
+            }
+            UpdateOtherIndicator(deg);
         }
     }
 }
