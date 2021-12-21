@@ -96,7 +96,7 @@ namespace COVID_RUSH
             }
             if (Input.GetKeyDown(KeyCode.F4))
             {
-                // AddSyringe();
+                StartCountdown();
             }
         }
 
@@ -111,6 +111,10 @@ namespace COVID_RUSH
         private void ShowLoading()
         {
             EventManager.Notify("onPopupLoading", this, null);
+        }
+        private void StartCountdown()
+        {
+            EventManager.Notify("onPopupCountdown", this, null);
         }
     }
 }
