@@ -14,8 +14,7 @@ namespace COVID_RUSH
         private TMP_Text[] mIndicatorTextList;
         private int mMainDegree;
         private int mUnit = 10;
-        private float mBias = 0;
-        private float mAccumulatedBias = 0;
+        private float mBias = 1000;
         private static Dictionary<int, string> mDegToDirectionDisplay = new Dictionary<int, string>
         {
             [0] = "N",
@@ -42,21 +41,11 @@ namespace COVID_RUSH
         {
             float bias = GetActualDegree(deg) - mMainDegree;
 
+            // prevent duplicated action
             if (bias == mBias) return;
             mBias = bias;
 
-            // if bias is small enough, just translate the indicator
-            if (Mathf.Abs(bias) < mUnit / 2)
-            {
-                int biasUnit = 5;
-                foreach (TMP_Text indicator in mIndicatorTextList)
-                {
-                    indicator.transform.localPosition += new Vector3(bias * biasUnit, 0, 0);
-                }
-                return;
-            }
-
-            // otherwise, update each indicator
+            // if bias is large enough, update each indicator
             int indicatorLength = mIndicatorTextList.Length;
             int halfIndicator = Mathf.FloorToInt(indicatorLength / 2);
             int indicatorWidth = 50;
@@ -65,6 +54,24 @@ namespace COVID_RUSH
                 mIndicatorTextList[i].text = DegreeToDisplayString(mMainDegree + (i - halfIndicator) * mUnit);
                 mIndicatorTextList[i].transform.localPosition = new Vector3((i - indicatorLength / 2) * indicatorWidth, 0, 0);
             }
+
+            // shrink the bias to -5 ~ 5
+            if (bias > mUnit / 2)
+            {
+                bias -= (mUnit / 2);
+            }
+            if (bias < -mUnit / 2)
+            {
+                bias += (mUnit / 2);
+            }
+
+            // then, just translate the indicator
+            int biasUnit = 5;
+            foreach (TMP_Text indicator in mIndicatorTextList)
+            {
+                indicator.transform.localPosition += new Vector3(bias * biasUnit, 0, 0);
+            }
+
         }
 
         private string DegreeToDisplayString(int degree)
