@@ -67,10 +67,17 @@ namespace COVID_RUSH
 
         public void SwitchToNewGame()
         {
-            mGameState = GameState.Gaming;
-            // TODO: Use an enum to map state-to-code
-            // 1 = scene of level 1
-            EventManager.Notify("onLoadScene", this, 1);
+            IEnumerator func()
+            {
+                mGameState = GameState.Gaming;
+                ShowLoading();
+                yield return new WaitForSeconds(2);
+                // TODO: Use an enum to map state-to-code
+                // 1 = scene of level 1
+                EventManager.Notify("onLoadScene", this, 1);
+            }
+
+            StartCoroutine(func());
         }
 
         public void SetVolume(float volume)
