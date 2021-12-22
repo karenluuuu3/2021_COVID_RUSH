@@ -72,6 +72,7 @@ public class Player : MonoBehaviour {
 		}
 
 		void Update (){
+			if (!GameManager.instance.IsGaming()) return;
 			KeyEnventCon();
 			MovementCon();
 			UpdateCompass();

@@ -19,6 +19,11 @@ namespace COVID_RUSH
             mEventStore.Register("onPopupCountdown", this, (_, p) => StartCoroutine(Popup(PopupType.Countdown, 4)));
         }
 
+        private void OnDestroy()
+        {
+            mEventStore.RemoveLisenterFromAllEvent(this);
+        }
+
         public IEnumerator Popup(object popupType, int duration=2)
         {
             mAnimator.SetInteger("popupType", (int)popupType);

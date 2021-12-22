@@ -48,6 +48,8 @@ namespace COVID_RUSH
             MyDeveloperShortCut();
         }
 
+        public bool IsGaming() { return mGameState == GameState.Gaming;  }
+
         public void SwitchToInformationScene()
         {
             mGameState = GameState.Information;
@@ -69,12 +71,15 @@ namespace COVID_RUSH
         {
             IEnumerator func()
             {
-                mGameState = GameState.Gaming;
                 ShowLoading();
                 yield return new WaitForSeconds(2);
                 // TODO: Use an enum to map state-to-code
                 // 1 = scene of level 1
                 EventManager.Notify("onLoadScene", this, 1);
+                yield return new WaitForSeconds(1);
+                StartCountdown();
+                yield return new WaitForSeconds(4);
+                mGameState = GameState.Gaming;
             }
 
             StartCoroutine(func());

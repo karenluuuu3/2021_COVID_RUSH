@@ -75,7 +75,7 @@ namespace COVID_RUSH
         }
 
         // 移除接收者: 移除存在於 dictionary 的某 listener(owner)
-        private void RemoveLisenterFromAllEvent(Component owner)
+        public void RemoveLisenterFromAllEvent(Component owner)
         {
             foreach (string eventName in EventDictionary.Keys)
             {
@@ -84,7 +84,7 @@ namespace COVID_RUSH
         }
 
         // 移除接收者: 移除有綁定某 event(eventName) 的某 listener(owner)
-        private void RemoveListenerFromEvent(string eventName, Component owner)
+        public void RemoveListenerFromEvent(string eventName, Component owner)
         {
             EventDictionary[eventName].RemoveAll(c => owner == c.owner);
         }
