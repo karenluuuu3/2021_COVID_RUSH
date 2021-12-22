@@ -18,6 +18,10 @@ public class SpectrumHandle : MonoBehaviour
         spectrumVal = new float [512];
         beatSpectrum = 0;
         hitSpectrum = 0;
+
+        // Tell the game manager how long this level is (in second)
+        AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+        m_eventStore.Notify("onSetLevelTiming", this, (int)audioSource.clip.length);
     }
 
     // Update is called once per frame
