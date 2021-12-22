@@ -69,10 +69,15 @@ public class Player : MonoBehaviour {
 			// Notify this event to update minimap & compass
 			Vector2 newDirection = new Vector2(transform.forward.x, -transform.forward.z);
 			mEventStore.Notify("onChangeForward", this, newDirection);
-		}
+
+			// TODO: Replace fixed destination position
+			Vector2 destinationDirection = new Vector2(45 - transform.position.x, -90 - transform.position.z);
+			mEventStore.Notify("onChangeDestination", this, destinationDirection);
+	}
 
 		void Update (){
-			if (!GameManager.instance.IsGaming()) return;
+			// TODO: Uncomment this if you want to start with Start Scene
+			// if (!GameManager.instance.IsGaming()) return;
 			MovementCon();
 			KeyEnventCon();
 			UpdateCompass();

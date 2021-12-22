@@ -8,9 +8,11 @@ namespace COVID_RUSH
     public class CompassController : MonoBehaviour
     {
         [SerializeField]
-        private GameObject mainDirection; // = GameObject.Find("Direction Indicator");
+        private GameObject mainDirection;
         [SerializeField]
-        private GameObject otherDirectionContainer; // = GameObject.Find("Other Direction");
+        private GameObject otherDirectionContainer;
+        [SerializeField]
+        private GameObject marker;
         private TMP_Text[] mIndicatorTextList;
         private int mMainDegree;
         private int mUnit = 10;
@@ -26,9 +28,12 @@ namespace COVID_RUSH
         void Start()
         {
             EventStore.instance.Register("onChangeForward", this, (c, p) => ChangePlayerDirection(p));
+            EventStore.instance.Register("onChangeDestination", this, (_, p) => ChangeDestination(p));
             mIndicatorTextList = otherDirectionContainer.GetComponentsInChildren<TMP_Text>();
             mMainDegree = 0;
         }
+
+        private bool IsValidDestination(Vector2 pos) { return pos.x != 0 || pos.y != 0; }
 
         private void UpdateMainIndicator(int deg)
         {
@@ -69,7 +74,7 @@ namespace COVID_RUSH
             int biasUnit = 5;
             foreach (TMP_Text indicator in mIndicatorTextList)
             {
-                indicator.transform.localPosition += new Vector3(bias * biasUnit, 0, 0);
+                indicator.transform.localPosition -= new Vector3(bias * biasUnit, 0, 0);
             }
 
         }
@@ -108,6 +113,19 @@ namespace COVID_RUSH
                 UpdateMainIndicator(approximatedDeg);
             }
             UpdateOtherIndicator(deg);
+        }
+
+        private void ChangeDestination(object destinationDirection)
+        {
+            Vector2 dir = (Vector2)destinationDirection;
+            float deg = (Mathf.Atan2(dir.y, dir.x)) * (180 / Mathf.PI);
+            if (Mathf.Abs(deg - mMainDegree) > 25)
+            {
+                marker.SetActive(false);
+                return;
+            }
+            marker.transform.localPosition = new Vector3((deg - mMainDegree) * 5, 14, 0);
+            marker.SetActive(true);
         }
     }
 }
