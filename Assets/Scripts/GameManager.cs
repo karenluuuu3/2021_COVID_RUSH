@@ -8,12 +8,12 @@ namespace COVID_RUSH
     public class GameManager : MonoBehaviour
     {
         public static GameManager instance = null;
-        private int CurrentLevel = 1;
+        private int mCurrentLevel = 1;
         private int currentVolume = 50;
         private int mCurrentTiming = 0;
 
         private EventStore EventManager = EventStore.instance;
-        public enum GameState : int { Start, Information, Setting, Gaming, Wasted, Ended }
+        public enum GameState : int { Start, Information, Setting, Gaming, Wasted, LevelEnd, Ended }
 
         private GameState mGameState = GameState.Start;
 
@@ -48,7 +48,22 @@ namespace COVID_RUSH
             MyDeveloperShortCut();
         }
 
+        public bool IsLevelEnd() { return mCurrentTiming == 0; }
         public bool IsGaming() { return mGameState == GameState.Gaming;  }
+
+        public void LevelEnd()
+        {
+            IEnumerator func()
+            {
+                mGameState = GameState.LevelEnd;
+                ShowCongratulation();
+                yield return new WaitForSeconds(2);
+                
+                // TODO: Add dashboard
+            }
+
+            StartCoroutine(func());
+        }
 
         public void SwitchToInformationScene()
         {
@@ -75,11 +90,17 @@ namespace COVID_RUSH
                 yield return new WaitForSeconds(2);
                 // TODO: Use an enum to map state-to-code
                 // 1 = scene of level 1
-                EventManager.Notify("onLoadScene", this, 1);
+                EventManager.Notify("onLoadScene", this, mCurrentLevel);
                 yield return new WaitForSeconds(1);
                 StartCountdown();
                 yield return new WaitForSeconds(4);
                 mGameState = GameState.Gaming;
+                while (!IsLevelEnd())
+                {
+                    yield return new WaitForSeconds(1);
+                    SetTiming(mCurrentTiming - 1);
+                }
+                LevelEnd();
             }
 
             StartCoroutine(func());
@@ -134,6 +155,7 @@ namespace COVID_RUSH
         private void SetTiming(object timing)
         {
             mCurrentTiming = (int)timing;
+            Debug.Log(mCurrentTiming);
             int min = Mathf.FloorToInt(mCurrentTiming / 60);
             int sec = mCurrentTiming % 60;
             Dictionary<string, string> dict = new Dictionary<string, string>

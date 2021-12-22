@@ -73,8 +73,8 @@ public class Player : MonoBehaviour {
 
 		void Update (){
 			if (!GameManager.instance.IsGaming()) return;
-			KeyEnventCon();
 			MovementCon();
+			KeyEnventCon();
 			UpdateCompass();
 			anim.SetInteger ("AnimationPar", playerState);
 			
