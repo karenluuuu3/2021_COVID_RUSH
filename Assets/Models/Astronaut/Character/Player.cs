@@ -43,7 +43,7 @@ public class Player : MonoBehaviour {
 			}
 			else if (Input.GetKey (KeyCode.Space)){
 				if (playerState!=2){
-					moveDirection.y=20;
+					moveDirection.y=10;
 					playerState = 2;
 				}
 			}  
