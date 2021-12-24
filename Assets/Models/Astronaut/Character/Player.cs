@@ -73,7 +73,15 @@ public class Player : MonoBehaviour {
 			// TODO: Replace fixed destination position
 			Vector2 destinationDirection = new Vector2(45 - transform.position.x, -90 - transform.position.z);
 			mEventStore.Notify("onChangeDestination", this, destinationDirection);
-	}
+		}
+
+		private void OnTriggerEnter(Collider col)
+		{
+			if (col.gameObject.tag == "Props")
+			{
+				Destroy(col.gameObject);
+			}
+		}
 
 		void Update (){
 			// TODO: Uncomment this if you want to start with Start Scene
@@ -84,4 +92,6 @@ public class Player : MonoBehaviour {
 			anim.SetInteger ("AnimationPar", playerState);
 			
 		}
+
+		
 }
