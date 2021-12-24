@@ -1,0 +1,52 @@
+newmtl syringe_needle_1254_metal_MatSG1_Mat
+Ni 1.6
+Ka 0 0 0
+d 1.0
+Ke 0.0
+Kd 0 0 0
+adobe_map_normal syringe_needle_1254/syringe_needle_1254_metal_Mat_normal.png
+Tr 0
+illum 7
+Ks 1 1 1
+adobe_translucence 0.0
+adobe_map_roughness syringe_needle_1254/syringe_needle_1254_metal_Mat_roughness.png
+adobe_interior_color 1.0 1.0 1.0
+adobe_density 1.0
+map_Pm syringe_needle_1254/syringe_needle_1254_metal_Mat_metallic.png
+Ns 16
+map_Kd syringe_needle_1254/syringe_needle_1254_metal_Mat_baseColor.png
+newmtl syringe_needle_1254_plastic_MatSG_Mat
+Ni 1.6
+Ka 0 0 0
+d 1
+Ke 0.0
+Kd 0 0 0
+adobe_map_normal syringe_needle_1254/syringe_needle_1254_plastic_Mat_normal.png
+map_d syringe_needle_1254/syringe_needle_1254_plastic_Mat_opacity.png
+Tr 0
+illum 7
+Ks 1 1 1
+adobe_translucence 0.0
+adobe_map_roughness syringe_needle_1254/syringe_needle_1254_plastic_Mat_roughness.png
+adobe_interior_color 1.0 1.0 1.0
+adobe_density 1.0
+map_Pm syringe_needle_1254/syringe_needle_1254_plastic_Mat_metallic.png
+Ns 16
+map_Kd syringe_needle_1254/syringe_needle_1254_plastic_Mat_baseColor.png
+newmtl syringe_needle_1254_rubber_MatSG_Mat
+Ni 1.6
+Ka 0 0 0
+d 1.0
+Ke 0.0
+Kd 0 0 0
+adobe_map_normal syringe_needle_1254/syringe_needle_1254_rubber_Mat_normal.png
+Tr 0
+illum 7
+Ks 1 1 1
+adobe_translucence 0.0
+adobe_map_roughness syringe_needle_1254/syringe_needle_1254_rubber_Mat_roughness.png
+adobe_interior_color 1.0 1.0 1.0
+adobe_density 1.0
+map_Pm syringe_needle_1254/syringe_needle_1254_rubber_Mat_metallic.png
+Ns 16
+map_Kd syringe_needle_1254/syringe_needle_1254_rubber_Mat_baseColor.png

@@ -12,7 +12,9 @@ public class Player : MonoBehaviour {
 		public float turnSpeed = 400.0f;
 		private Vector3 moveDirection = Vector3.zero;
 		public float gravity = 20.0f;
-		public int playerState=0;	//0=idle	1=walk	2=jump
+		public int playerState=0;   //0=idle	1=walk	2=jump
+
+		[SerializeField] ParticleSystem collectParticle = null;
 		
 
 		void Start () {
@@ -79,6 +81,7 @@ public class Player : MonoBehaviour {
 		{
 			if (col.gameObject.tag == "Props")
 			{
+				collectParticle.Play();
 				Destroy(col.gameObject);
 			}
 		}
@@ -90,7 +93,6 @@ public class Player : MonoBehaviour {
 			KeyEnventCon();
 			UpdateCompass();
 			anim.SetInteger ("AnimationPar", playerState);
-			
 		}
 
 		
