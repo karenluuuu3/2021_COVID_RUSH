@@ -21,6 +21,7 @@ public class SpectrumHandle : MonoBehaviour
 
         // Tell the game manager how long this level is (in second)
         AudioSource audioSource = gameObject.GetComponent<AudioSource>();
+        //AudioSource beatSource = gameObject.Find("BeatSrc").GetComponent<AudioSource>();
         m_eventStore.Notify("onSetLevelTiming", this, (int)audioSource.clip.length);
     }
 

@@ -73,6 +73,6 @@ public class SpectrumHit : MonoBehaviour
     {
         OnUpdate();
 
-		//Debug.Log(m_audioValue);
+		Debug.Log(m_audioValue);
     }
 }
