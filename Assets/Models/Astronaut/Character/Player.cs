@@ -15,12 +15,14 @@ public class Player : MonoBehaviour {
 		public int playerState=0;   //0=idle	1=walk	2=jump
 
 		[SerializeField] ParticleSystem collectParticle = null;
-		
+		public AudioClip clip;
+
 
 		void Start () {
 			controller = GetComponent <CharacterController>();
 			anim = gameObject.GetComponentInChildren<Animator>();
 			anim.SetInteger ("AnimationPar", playerState);
+			AudioSource audio = GetComponent<AudioSource>();
 			UpdateCompass();
 		}
 
@@ -82,6 +84,7 @@ public class Player : MonoBehaviour {
 			if (col.gameObject.tag == "Props")
 			{
 				collectParticle.Play();
+				GetComponent<AudioSource>().Play();// get
 				Destroy(col.gameObject);
 			}
 		}
@@ -93,6 +96,7 @@ public class Player : MonoBehaviour {
 			KeyEnventCon();
 			UpdateCompass();
 			anim.SetInteger ("AnimationPar", playerState);
+
 		}
 
 		
