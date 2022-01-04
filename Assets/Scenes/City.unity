@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2103966894}
-  m_IndirectSpecularColor: {r: 0.43726107, g: 0.75450814, b: 1.0290481, a: 1}
+  m_IndirectSpecularColor: {r: 0.43726084, g: 0.75450844, b: 1.0290486, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1325,7 +1325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6db7d360147918e408d0710249b94996, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Facemask
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 6db7d360147918e408d0710249b94996, type: 3}
       propertyPath: m_LocalScale.x
@@ -2471,7 +2471,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Vaccine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
@@ -3302,7 +3302,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e943ce5c8ea9bb14a94d7ce54d399e92, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Needle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e943ce5c8ea9bb14a94d7ce54d399e92, type: 3}
@@ -3526,7 +3526,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6db7d360147918e408d0710249b94996, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Facemask
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 6db7d360147918e408d0710249b94996, type: 3}
       propertyPath: m_LocalScale.x
@@ -4155,7 +4155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Vaccine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
@@ -5711,7 +5711,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e943ce5c8ea9bb14a94d7ce54d399e92, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Needle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e943ce5c8ea9bb14a94d7ce54d399e92, type: 3}
@@ -6061,7 +6061,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Vaccine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
@@ -10662,7 +10662,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e943ce5c8ea9bb14a94d7ce54d399e92, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Needle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e943ce5c8ea9bb14a94d7ce54d399e92, type: 3}
@@ -11323,7 +11323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e943ce5c8ea9bb14a94d7ce54d399e92, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Needle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e943ce5c8ea9bb14a94d7ce54d399e92, type: 3}
@@ -13702,7 +13702,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e943ce5c8ea9bb14a94d7ce54d399e92, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Needle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e943ce5c8ea9bb14a94d7ce54d399e92, type: 3}
@@ -14424,7 +14424,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Vaccine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
@@ -15293,7 +15293,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6db7d360147918e408d0710249b94996, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Facemask
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 6db7d360147918e408d0710249b94996, type: 3}
       propertyPath: m_LocalScale.x
@@ -15821,7 +15821,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Vaccine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
@@ -17817,7 +17817,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Vaccine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
@@ -18772,7 +18772,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6db7d360147918e408d0710249b94996, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Facemask
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 6db7d360147918e408d0710249b94996, type: 3}
       propertyPath: m_LocalScale.x
@@ -21286,7 +21286,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Vaccine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
@@ -21818,7 +21818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 6db7d360147918e408d0710249b94996, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Facemask
       objectReference: {fileID: 0}
     - target: {fileID: 1151388028547126963, guid: 6db7d360147918e408d0710249b94996, type: 3}
       propertyPath: m_LocalScale.x
@@ -21949,7 +21949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Vaccine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
@@ -23319,7 +23319,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Vaccine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
@@ -25018,7 +25018,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
       propertyPath: m_TagString
-      value: Props
+      value: Props_Vaccine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3e1d46af2fa5e4a40b200e7de20903e9, type: 3}
