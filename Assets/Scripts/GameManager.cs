@@ -133,6 +133,10 @@ namespace COVID_RUSH
             {
                 StartCountdown();
             }
+            if (Input.GetKeyDown(KeyCode.F5))
+            {
+                SetLifeValue();
+            }
         }
 
         private void ShowWasted()
@@ -155,7 +159,6 @@ namespace COVID_RUSH
         private void SetTiming(object timing)
         {
             mCurrentTiming = (int)timing;
-            Debug.Log(mCurrentTiming);
             int min = Mathf.FloorToInt(mCurrentTiming / 60);
             int sec = mCurrentTiming % 60;
             Dictionary<string, string> dict = new Dictionary<string, string>
@@ -163,6 +166,11 @@ namespace COVID_RUSH
                 { "timing", (min < 10 ? "0" : "") + min.ToString() + ":" + (sec < 10 ? "0" : "") + sec.ToString() },
             };
             EventManager.Notify("onVariableChange", this, dict);
+        }
+
+        private void SetLifeValue ()
+        {
+            EventManager.Notify("onSetLifeValueByDiff", this, -8);
         }
     }
 }
