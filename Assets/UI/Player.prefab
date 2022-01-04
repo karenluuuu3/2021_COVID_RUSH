@@ -96,8 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3e9bd2af4844e4cb734482f04baa02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookAt: {fileID: 0}
-  camTransform: {fileID: 0}
+  lookAt: {fileID: 3366515188327699613}
+  camTransform: {fileID: 8461506822284334237}
   distance: 5
 --- !u!1 &2735908801806558119
 GameObject:
@@ -980,6 +980,8 @@ MonoBehaviour:
   turnSpeed: 150
   gravity: 20
   playerState: 0
+  collectParticle: {fileID: 0}
+  clip: {fileID: 0}
 --- !u!54 &3366275787212995279
 Rigidbody:
   m_ObjectHideFlags: 0
