@@ -9,6 +9,7 @@ TagManager:
   - Props_Vaccine
   - Props_Facemask
   - Props_Needle
+  - Water
   layers:
   - Default
   - TransparentFX
