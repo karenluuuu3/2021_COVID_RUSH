@@ -108,7 +108,7 @@ public class Player : MonoBehaviour {
 		bool isInInfectedArea = col.gameObject.tag == "Red";
 		if (isInInfectedArea)
 		{
-			mEventStore.Notify("onSetLifeValueByDiff", this, -0.1);
+			mEventStore.Notify("onEnterInfectedArea", this, -0.1);
 		}
 	}
 

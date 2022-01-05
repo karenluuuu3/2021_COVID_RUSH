@@ -45,13 +45,16 @@ namespace COVID_RUSH
         }
         private ItemType mItemType = new ItemType();
         private Score mScore = new Score();
+        private enum LifeObject : int { Mask, Needle, Main };
         private int mCurrentNeedle = 0;
         private int mCurrentFacemask = 0;
 
         void Start()
         {
             mEventStore.Register("onPickupItem", this, (_, p) => HandlePickUp(p));
+            mEventStore.Register("onEnterInfectedArea", this, (_, p) => HandleEnterInfectedArea());
         }
+
         void Awake()
         {
             DontDestroyOnLoad(gameObject);
@@ -62,7 +65,7 @@ namespace COVID_RUSH
         {
             if (Input.GetKeyDown(KeyCode.F5))
             {
-                SetLifeValue();
+                HandleEnterInfectedArea();
             }
 
             if (Input.GetKeyDown(KeyCode.F6))
@@ -81,15 +84,32 @@ namespace COVID_RUSH
             }
         }
 
-        private void SetLifeValue()
+        private LifeObject GetCurrentLifeObject()
         {
-            mEventStore.Notify("onSetLifeValueByDiff", this, -8);
+            if (mCurrentFacemask > 0) return LifeObject.Mask;
+            if (mCurrentNeedle > 0) return LifeObject.Needle;
+            return LifeObject.Main;
+        }
+
+        private void HandleEnterInfectedArea()
+        {
+            ValueBar.UpdateFormat value = new ValueBar.UpdateFormat
+            {
+                name = GetCurrentLifeObject().ToString(),
+                value = -0.1f,
+            };
+            mEventStore.Notify("onSetBarValueByDiff", this, value);
         }
 
         private void PickUpVaccine()
         {
             mScore.vaccineCount++;
-            mEventStore.Notify("onSetLifeValueByDiff", this, 20);
+            ValueBar.UpdateFormat value = new ValueBar.UpdateFormat
+            {
+                name = LifeObject.Main.ToString(),
+                value = 20.0f,
+            };
+            mEventStore.Notify("onSetBarValueByDiff", this, value);
         }
 
         private void SetNeedleCountByDiff(int diff)
@@ -102,7 +122,17 @@ namespace COVID_RUSH
                     { "needleCount", value },
                 };
             mEventStore.Notify("onVariableChange", this, dict);
+
+            // life bar
+            mScore.vaccineCount++;
+            ValueBar.UpdateFormat barValue = new ValueBar.UpdateFormat
+            {
+                name = LifeObject.Needle.ToString(),
+                value = 100.0f,
+            };
+            mEventStore.Notify("onSetFixedBarValue", this, barValue);
         }
+
         private void SetFacemaskCountByDiff(int diff)
         {
             mCurrentFacemask = Mathf.Clamp(mCurrentFacemask + diff, 0, 5);
@@ -113,6 +143,15 @@ namespace COVID_RUSH
                     { "facemaskCount", value },
                 };
             mEventStore.Notify("onVariableChange", this, dict);
+
+            // life bar
+            mScore.vaccineCount++;
+            ValueBar.UpdateFormat barValue = new ValueBar.UpdateFormat
+            {
+                name = LifeObject.Mask.ToString(),
+                value = 100.0f,
+            };
+            mEventStore.Notify("onSetFixedBarValue", this, barValue);
         }
 
         private void HandlePickUp(object tgN)

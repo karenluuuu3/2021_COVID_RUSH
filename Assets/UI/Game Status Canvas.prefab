@@ -2571,6 +2571,7 @@ GameObject:
   - component: {fileID: 6213356509340835124}
   - component: {fileID: 6213356509340835126}
   - component: {fileID: 6213356509340835125}
+  - component: {fileID: 198870499112450622}
   m_Layer: 5
   m_Name: Timebar
   m_TagString: Untagged
@@ -2596,7 +2597,7 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -12}
   m_SizeDelta: {x: 0, y: -24}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &6213356509340835126
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2632,6 +2633,20 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &198870499112450622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213356509340835115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdb23f68131f9b47b49a8cac032d3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barName: Needle
+  value: 0
 --- !u!1 &6213356509411959837
 GameObject:
   m_ObjectHideFlags: 0
@@ -2643,6 +2658,7 @@ GameObject:
   - component: {fileID: 6213356509411959838}
   - component: {fileID: 6213356509411959832}
   - component: {fileID: 6213356509411959839}
+  - component: {fileID: 2391758048848227311}
   m_Layer: 5
   m_Name: Timebar
   m_TagString: Untagged
@@ -2668,7 +2684,7 @@ RectTransform:
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -12}
   m_SizeDelta: {x: 0, y: -24}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &6213356509411959832
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2704,6 +2720,20 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &2391758048848227311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213356509411959837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cdb23f68131f9b47b49a8cac032d3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  barName: Mask
+  value: 0
 --- !u!1 &6213356509447026821
 GameObject:
   m_ObjectHideFlags: 0
@@ -3636,7 +3666,7 @@ GameObject:
   - component: {fileID: 352329074540531159}
   - component: {fileID: 8986710356943869369}
   - component: {fileID: 1837361531275585818}
-  - component: {fileID: 434417036824494535}
+  - component: {fileID: 7893937272094576438}
   m_Layer: 5
   m_Name: Bar
   m_TagString: Untagged
@@ -3713,7 +3743,7 @@ MonoBehaviour:
   m_EffectColor: {r: 0.09803922, g: 0.09019608, b: 0.09019608, a: 0.5}
   m_EffectDistance: {x: 2, y: -2}
   m_UseGraphicAlpha: 1
---- !u!114 &434417036824494535
+--- !u!114 &7893937272094576438
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -3725,3 +3755,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cdb23f68131f9b47b49a8cac032d3b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  barName: Main
+  value: 100
