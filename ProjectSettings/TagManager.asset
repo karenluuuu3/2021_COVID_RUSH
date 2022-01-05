@@ -11,6 +11,8 @@ TagManager:
   - Props_Needle
   - Water
   - Enemy
+  - Enemy_Facemask
+  - Enemy_Needle
   layers:
   - Default
   - TransparentFX
