@@ -198,10 +198,12 @@ namespace COVID_RUSH
         private void ShowWasted()
         {
             EventManager.Notify("onPopupWasted", this, null);
+            EventManager.Notify("onPlayAudioSource", this, AudioManager.AudioType.Lose);
         }
         private void ShowCongratulation()
         {
             EventManager.Notify("onPopupCongratulation", this, null);
+            EventManager.Notify("onPlayAudioSource", this, AudioManager.AudioType.Win);
         }
         private void ShowLoading()
         {
@@ -210,6 +212,7 @@ namespace COVID_RUSH
         private void StartCountdown()
         {
             EventManager.Notify("onPopupCountdown", this, null);
+            EventManager.Notify("onPlayAudioSource", this, AudioManager.AudioType.CountDown);
         }
 
         private void SetTiming(object timing)
