@@ -87,20 +87,30 @@ public class Player : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider col)
 	{
-		if (IsObtainable(col.gameObject.tag))
+		string colliderClass = col.gameObject.tag;
+		if (IsObtainable(colliderClass))
 		{
 			collectParticle.Play();
 			GetComponent<AudioSource>().Play();// get
 			Destroy(col.gameObject);
-			mEventStore.Notify("onPickupItem", this, col.gameObject.tag);
+			mEventStore.Notify("onPickupItem", this, colliderClass);
+			return;
 		}
 
-		if (col.gameObject.tag == "Enemy_Facemask" || col.gameObject.tag == "Enemy_Needle")
+		if (colliderClass == "Enemy_Facemask" || colliderClass == "Enemy_Needle")
         {
 			hitParticle.Play();
 		}
 	}
 
+	private void OnTriggerStay(Collider col)
+	{
+		bool isInInfectedArea = col.gameObject.tag == "Red";
+		if (isInInfectedArea)
+		{
+			mEventStore.Notify("onSetLifeValueByDiff", this, -0.1);
+		}
+	}
 
 	void Update (){
 		// TODO: Uncomment this if you want to start with Start Scene
