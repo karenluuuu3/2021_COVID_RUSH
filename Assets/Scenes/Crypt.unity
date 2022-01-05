@@ -29860,6 +29860,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3366275787212995278, guid: 27ead5df8d84082489f7dfd2b8251902, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3366515188327699613, guid: 27ead5df8d84082489f7dfd2b8251902, type: 3}
       propertyPath: m_RootOrder
       value: 7

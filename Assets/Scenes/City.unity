@@ -25260,12 +25260,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4335462056739331106, guid: 092f6fe7c07283948a18b23fb3ec2c15, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4336601518533304719, guid: 092f6fe7c07283948a18b23fb3ec2c15, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 092f6fe7c07283948a18b23fb3ec2c15, type: 3}
+--- !u!4 &1341455017438324406 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4334025803194905201, guid: 092f6fe7c07283948a18b23fb3ec2c15, type: 3}
+  m_PrefabInstance: {fileID: 1341455017438324405}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3742982237687911380
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25273,8 +25282,24 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3648770465087374514, guid: 571d4b0c73414384494506801ee47169, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: dc8bd1523fff4204b966c7693f919eee, type: 2}
+    - target: {fileID: 3648770465087374514, guid: 571d4b0c73414384494506801ee47169, type: 3}
+      propertyPath: m_UpdateMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3648770465087374514, guid: 571d4b0c73414384494506801ee47169, type: 3}
+      propertyPath: m_CullingMode
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3744089277213576006, guid: 571d4b0c73414384494506801ee47169, type: 3}
       propertyPath: m_Name
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3744089277213576006, guid: 571d4b0c73414384494506801ee47169, type: 3}
+      propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 3746595525759981752, guid: 571d4b0c73414384494506801ee47169, type: 3}
@@ -25299,11 +25324,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3746595525759981752, guid: 571d4b0c73414384494506801ee47169, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.099999905
+      value: 0.42
       objectReference: {fileID: 0}
     - target: {fileID: 3746595525759981752, guid: 571d4b0c73414384494506801ee47169, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 2.1262798
+      value: 2.49
       objectReference: {fileID: 0}
     - target: {fileID: 3746595525759981752, guid: 571d4b0c73414384494506801ee47169, type: 3}
       propertyPath: m_LocalRotation.w
@@ -25333,8 +25358,41 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3606528754509360098, guid: 571d4b0c73414384494506801ee47169, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 571d4b0c73414384494506801ee47169, type: 3}
+--- !u!1 &3742982237687911381 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3744089277213576006, guid: 571d4b0c73414384494506801ee47169, type: 3}
+  m_PrefabInstance: {fileID: 3742982237687911380}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3742982237687911382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742982237687911381}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5502e2d479cb41a418931537fc1d287b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1341455017438324406}
+--- !u!136 &3742982237687911383
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3742982237687911381}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.1
+  m_Height: 0.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!1001 &4325850762285783314
 PrefabInstance:
   m_ObjectHideFlags: 0
