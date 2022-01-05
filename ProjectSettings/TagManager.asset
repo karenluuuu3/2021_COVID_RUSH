@@ -6,7 +6,9 @@ TagManager:
   tags:
   - Red
   - Green
-  - Props
+  - Props_Vaccine
+  - Props_Facemask
+  - Props_Needle
   layers:
   - Default
   - TransparentFX

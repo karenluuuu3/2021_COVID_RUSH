@@ -79,13 +79,19 @@ public class Player : MonoBehaviour {
 			mEventStore.Notify("onChangeDestination", this, destinationDirection);
 		}
 
+		private bool IsObtainable(string tag)
+		{
+			return (tag == "Props_Vaccine") || (tag == "Props_Facemask") || (tag == "Props_Needle");
+		}
+
 		private void OnTriggerEnter(Collider col)
 		{
-			if (col.gameObject.tag == "Props")
+			if (IsObtainable(col.gameObject.tag))
 			{
 				collectParticle.Play();
 				GetComponent<AudioSource>().Play();// get
 				Destroy(col.gameObject);
+				mEventStore.Notify("onPickupItem", this, col.gameObject.tag);
 			}
 		}
 

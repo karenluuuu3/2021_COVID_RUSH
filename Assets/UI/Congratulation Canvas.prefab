@@ -277,11 +277,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -7871556540511652807, guid: 4d70dff3846a3234f8ee961ea3e7c771, type: 3}
       propertyPath: m_SortingOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3888481672020999207, guid: 4d70dff3846a3234f8ee961ea3e7c771, type: 3}
       propertyPath: m_Name
       value: Congratulation
+      objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: 4d70dff3846a3234f8ee961ea3e7c771, type: 3}
+      propertyPath: m_Layer
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: 4d70dff3846a3234f8ee961ea3e7c771, type: 3}
       propertyPath: m_RootOrder
