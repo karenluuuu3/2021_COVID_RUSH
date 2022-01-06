@@ -29,12 +29,11 @@ public class Enemy : MonoBehaviour
     {
         while (objectQuantity < total)
         {
-            objectToGenerate = Random.Range(1,2);
+            objectToGenerate = Random.Range(1, 3);
             // xPos = Random.Range(-106, -5);
             // zPos = Random.Range(-44,56);
             xPos = Random.Range(xrange1, xrange2);
             zPos = Random.Range(zrange1, zrange2);
-
             // Instantiate(ene, new Vector3(xPos, 0, zPos), Quaternion.identity);
 
             
