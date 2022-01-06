@@ -9,7 +9,6 @@ namespace COVID_RUSH
         public static GameManager instance = null;
         private int mCurrentLevel = 1;
         private int currentVolume = 50;
-        private int mCurrentTiming = 0;
 
         private EventStore EventManager = EventStore.instance;
         public enum GameState : int { Start, Information, Setting, Gaming, Wasted, LevelEnd, Ended }
@@ -37,7 +36,7 @@ namespace COVID_RUSH
         private void Start()
         {
             EventManager.Register("showWasted", this, (c,p) => ShowWasted());
-            EventManager.Register("onSetLevelTiming", this, (_, p) => SetTiming(p));
+            EventManager.Register("onPlayerDied", this, (_, p) => LevelLose());
         }
 
         private void FixedUpdate()
@@ -46,10 +45,9 @@ namespace COVID_RUSH
             MyDeveloperShortCut();
         }
 
-        public bool IsLevelEnd() { return mCurrentTiming == 0; }
         public bool IsGaming() { return mGameState == GameState.Gaming;  }
 
-        public void LevelEnd()
+        public void LevelWin()
         {
             IEnumerator func()
             {
@@ -93,12 +91,7 @@ namespace COVID_RUSH
                 StartCountdown();
                 yield return new WaitForSeconds(4);
                 mGameState = GameState.Gaming;
-                while (!IsLevelEnd())
-                {
-                    yield return new WaitForSeconds(1);
-                    SetTiming(mCurrentTiming - 1);
-                }
-                LevelEnd();
+                StartTiming();
             }
 
             StartCoroutine(func());
@@ -110,6 +103,20 @@ namespace COVID_RUSH
             Dictionary<string, string> variableDict = new Dictionary<string, string>();
             variableDict.Add("volume", currentVolume.ToString() + "%");
             EventManager.Notify("onVariableChange", this, variableDict);
+        }
+
+        private void LevelLose()
+        {
+            IEnumerator func()
+            {
+                mGameState = GameState.LevelEnd;
+                ShowWasted();
+                yield return new WaitForSeconds(2);
+
+                // TODO: Add dashboard
+            }
+
+            StartCoroutine(func());
         }
 
         private void MyDeveloperShortCut()
@@ -152,18 +159,9 @@ namespace COVID_RUSH
             EventManager.Notify("onPopupCountdown", this, null);
             EventManager.Notify("onPlayAudioSource", this, AudioManager.AudioType.CountDown);
         }
-
-        private void SetTiming(object timing)
+        private void StartTiming()
         {
-            mCurrentTiming = (int)timing;
-            int min = Mathf.FloorToInt(mCurrentTiming / 60);
-            int sec = mCurrentTiming % 60;
-            Dictionary<string, string> dict = new Dictionary<string, string>
-            {
-                { "timing", (min < 10 ? "0" : "") + min.ToString() + ":" + (sec < 10 ? "0" : "") + sec.ToString() },
-            };
-            EventManager.Notify("onVariableChange", this, dict);
+            EventManager.Notify("onStartTiming", this, null);
         }
-
     }
 }

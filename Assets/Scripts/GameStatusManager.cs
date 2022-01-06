@@ -48,6 +48,7 @@ namespace COVID_RUSH
         private enum LifeObject : int { Mask, Needle, Main };
         private int mCurrentNeedle = 0;
         private int mCurrentFacemask = 0;
+        private int mCurrentTiming = 0;
         private HashSet<GameObject> mEnemySet = new HashSet<GameObject>();
 
         void Start()
@@ -57,6 +58,8 @@ namespace COVID_RUSH
             mEventStore.Register("onBarZeroing", this, (_, p) => HandleBarZeroing(p));
             mEventStore.Register("onEnemyLeave", this, (_, p) => HandleEnemyLeave(p));
             mEventStore.Register("onEnemyEnter", this, (_, p) => HandleEnemyEnter(p));
+            mEventStore.Register("onSetLevelTiming", this, (_, p) => SetTiming(p));
+            mEventStore.Register("onStartTiming", this, (_, p) => StartTiming());
         }
 
         void Awake()
@@ -88,6 +91,8 @@ namespace COVID_RUSH
             }
         }
 
+        private bool IsLevelEnd() { return mCurrentTiming == 0; }
+
         private LifeObject GetCurrentLifeObject()
         {
             if (mCurrentFacemask > 0) return LifeObject.Mask;
@@ -100,6 +105,8 @@ namespace COVID_RUSH
             string barName = (string)bn;
             if (barName == LifeObject.Main.ToString())
             {
+                SetTiming(0);
+                mEventStore.Notify("onPlayerDied", this, null);
                 return;
             }
 
@@ -243,6 +250,32 @@ namespace COVID_RUSH
                     default: break;
                 }
             }
+        }
+
+        private void SetTiming(object timing)
+        {
+            mCurrentTiming = (int)timing;
+            int min = Mathf.FloorToInt(mCurrentTiming / 60);
+            int sec = mCurrentTiming % 60;
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                { "timing", (min < 10 ? "0" : "") + min.ToString() + ":" + (sec < 10 ? "0" : "") + sec.ToString() },
+            };
+            mEventStore.Notify("onVariableChange", this, dict);
+        }
+
+        private void StartTiming()
+        {
+            IEnumerator func()
+            {
+                while (!IsLevelEnd())
+                {
+                    yield return new WaitForSeconds(1);
+                    SetTiming(mCurrentTiming - 1);
+                }
+            }
+
+            StartCoroutine(func());
         }
     }
 }
