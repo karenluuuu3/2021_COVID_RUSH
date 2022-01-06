@@ -53,6 +53,7 @@ namespace COVID_RUSH
         {
             mEventStore.Register("onPickupItem", this, (_, p) => HandlePickUp(p));
             mEventStore.Register("onEnterInfectedArea", this, (_, p) => HandleEnterInfectedArea());
+            mEventStore.Register("onBarZeroing", this, (_, p) => HandleBarZeroing(p));
         }
 
         void Awake()
@@ -91,6 +92,27 @@ namespace COVID_RUSH
             return LifeObject.Main;
         }
 
+        private void HandleBarZeroing(object bn)
+        {
+            string barName = (string)bn;
+            if (barName == LifeObject.Main.ToString())
+            {
+                return;
+            }
+
+            if (barName == LifeObject.Mask.ToString())
+            {
+                SetFacemaskCountByDiff(-1);
+                return;
+            }
+
+            if (barName == LifeObject.Needle.ToString())
+            {
+                SetNeedleCountByDiff(-1);
+                return;
+            }
+        }
+
         private void HandleEnterInfectedArea()
         {
             ValueBar.UpdateFormat value = new ValueBar.UpdateFormat
@@ -114,8 +136,9 @@ namespace COVID_RUSH
 
         private void SetNeedleCountByDiff(int diff)
         {
+            bool shouldUpdateBar = mCurrentNeedle + diff > 0;
             mCurrentNeedle = Mathf.Clamp(mCurrentNeedle + diff, 0, 5);
-            mScore.needleCount = mCurrentFacemask;
+            mScore.needleCount += Mathf.Max(0, diff);
             string value = String.Concat(Enumerable.Repeat("y", mCurrentNeedle));
             Dictionary<string, string> dict = new Dictionary<string, string>
                 {
@@ -123,8 +146,7 @@ namespace COVID_RUSH
                 };
             mEventStore.Notify("onVariableChange", this, dict);
 
-            // life bar
-            mScore.vaccineCount++;
+            if (!shouldUpdateBar) return;
             ValueBar.UpdateFormat barValue = new ValueBar.UpdateFormat
             {
                 name = LifeObject.Needle.ToString(),
@@ -135,8 +157,9 @@ namespace COVID_RUSH
 
         private void SetFacemaskCountByDiff(int diff)
         {
+            bool shouldUpdateBar = mCurrentFacemask + diff > 0;
             mCurrentFacemask = Mathf.Clamp(mCurrentFacemask + diff, 0, 5);
-            mScore.facemaskCount = mCurrentFacemask;
+            mScore.facemaskCount += Mathf.Max(0, diff);
             string value = String.Concat(Enumerable.Repeat("m", mCurrentFacemask));
             Dictionary<string, string> dict = new Dictionary<string, string>
                 {
@@ -144,8 +167,7 @@ namespace COVID_RUSH
                 };
             mEventStore.Notify("onVariableChange", this, dict);
 
-            // life bar
-            mScore.vaccineCount++;
+            if (!shouldUpdateBar) return;
             ValueBar.UpdateFormat barValue = new ValueBar.UpdateFormat
             {
                 name = LifeObject.Mask.ToString(),

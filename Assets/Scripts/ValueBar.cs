@@ -16,6 +16,7 @@ namespace COVID_RUSH
         private RectTransform rectangle;
         private float width;
         private EventStore mEventStore = EventStore.instance;
+
         public struct UpdateFormat
         {
             public string name;
@@ -69,6 +70,10 @@ namespace COVID_RUSH
         private void SetValue (float v)
         {
             value = Mathf.Clamp(v, 0.0f, 100.0f);
+            if (value <= 0.0f)
+            {
+                mEventStore.Notify("onBarZeroing", this, barName);
+            }
             rectangle.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, Mathf.Round(value / 100 * width));
         }
     }
