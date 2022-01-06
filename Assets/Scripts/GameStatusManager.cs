@@ -48,12 +48,15 @@ namespace COVID_RUSH
         private enum LifeObject : int { Mask, Needle, Main };
         private int mCurrentNeedle = 0;
         private int mCurrentFacemask = 0;
+        private HashSet<string> mEnemySet = new HashSet<string>();
 
         void Start()
         {
             mEventStore.Register("onPickupItem", this, (_, p) => HandlePickUp(p));
             mEventStore.Register("onEnterInfectedArea", this, (_, p) => HandleEnterInfectedArea());
             mEventStore.Register("onBarZeroing", this, (_, p) => HandleBarZeroing(p));
+            mEventStore.Register("onEnemyLeave", this, (_, p) => HandleEnemyLeave(p));
+            mEventStore.Register("onEnemyEnter", this, (_, p) => HandleEnemyEnter(p));
         }
 
         void Awake()
@@ -123,15 +126,40 @@ namespace COVID_RUSH
             mEventStore.Notify("onSetBarValueByDiff", this, value);
         }
 
-        private void PickUpVaccine()
+        private void HandleEnemyEnter(object enemyName)
         {
-            mScore.vaccineCount++;
+            if (mEnemySet.Contains(enemyName)) return;
+
+            mEnemySet.Add((string)enemyName);
+            LifeObject current = GetCurrentLifeObject();
+            switch (current)
+            {
+                case LifeObject.Main: SetLifeValue(-10.0f); ; break;
+                case LifeObject.Needle: SetNeedleCountByDiff(-1); break;
+                case LifeObject.Mask: SetFacemaskCountByDiff(-1); break;
+                default: break;
+            }
+        }
+
+        private void HandleEnemyLeave(object enemyName)
+        {
+            mEnemySet.Remove((string)enemyName);
+        }
+
+        private void SetLifeValue(float v)
+        {
             ValueBar.UpdateFormat value = new ValueBar.UpdateFormat
             {
                 name = LifeObject.Main.ToString(),
-                value = 20.0f,
+                value = v,
             };
             mEventStore.Notify("onSetBarValueByDiff", this, value);
+        }
+
+        private void PickUpVaccine()
+        {
+            mScore.vaccineCount++;
+            SetLifeValue(20.0f);
         }
 
         private void SetNeedleCountByDiff(int diff)

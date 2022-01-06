@@ -85,6 +85,11 @@ public class Player : MonoBehaviour {
 		return (tag == "Props_Vaccine") || (tag == "Props_Facemask") || (tag == "Props_Needle");
 	}
 
+	private bool IsHitEnemy(string tag)
+	{
+		return (tag == "Enemy_Facemask") || (tag == "Enemy_Needle");
+	}
+
 	private void OnTriggerEnter(Collider col)
 	{
 		string colliderClass = col.gameObject.tag;
@@ -97,9 +102,10 @@ public class Player : MonoBehaviour {
 			return;
 		}
 
-		if (colliderClass == "Enemy_Facemask" || colliderClass == "Enemy_Needle")
+		if (IsHitEnemy(colliderClass))
         {
 			hitParticle.Play();
+			mEventStore.Notify("onEnemyEnter", this, col.gameObject.name);
 		}
 	}
 
@@ -112,7 +118,16 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	void Update (){
+    private void OnTriggerExit(Collider other)
+	{
+		if (IsHitEnemy(other.gameObject.tag))
+		{
+			hitParticle.Play();
+			mEventStore.Notify("onEnemyLeave", this, other.gameObject.name);
+		}
+	}
+
+    void Update (){
 		// TODO: Uncomment this if you want to start with Start Scene
 		// if (!GameManager.instance.IsGaming()) return;
 		MovementCon();
