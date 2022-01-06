@@ -105,7 +105,7 @@ public class Player : MonoBehaviour {
 		if (IsHitEnemy(colliderClass))
         {
 			hitParticle.Play();
-			mEventStore.Notify("onEnemyEnter", this, col.gameObject.name);
+			mEventStore.Notify("onEnemyEnter", this, col.gameObject);
 		}
 	}
 
@@ -123,7 +123,7 @@ public class Player : MonoBehaviour {
 		if (IsHitEnemy(other.gameObject.tag))
 		{
 			hitParticle.Play();
-			mEventStore.Notify("onEnemyLeave", this, other.gameObject.name);
+			mEventStore.Notify("onEnemyLeave", this, other.gameObject);
 		}
 	}
 

@@ -1835,6 +1835,7 @@ GameObject:
   - component: {fileID: 6213356508078986652}
   - component: {fileID: 6213356508078986643}
   - component: {fileID: 6213356508078986642}
+  - component: {fileID: 1330558566379652850}
   m_Layer: 5
   m_Name: Game Status Canvas
   m_TagString: Untagged
@@ -1957,6 +1958,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a7993c912f92da344a5929b3c247c91c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1330558566379652850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6213356508078986641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2be42aa82b7144aa82b30773230549, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6213356508203559661

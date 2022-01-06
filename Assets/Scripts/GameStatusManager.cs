@@ -48,7 +48,7 @@ namespace COVID_RUSH
         private enum LifeObject : int { Mask, Needle, Main };
         private int mCurrentNeedle = 0;
         private int mCurrentFacemask = 0;
-        private HashSet<string> mEnemySet = new HashSet<string>();
+        private HashSet<GameObject> mEnemySet = new HashSet<GameObject>();
 
         void Start()
         {
@@ -126,24 +126,50 @@ namespace COVID_RUSH
             mEventStore.Notify("onSetBarValueByDiff", this, value);
         }
 
-        private void HandleEnemyEnter(object enemyName)
+        private void HandleEnemyEnter(object obj)
         {
-            if (mEnemySet.Contains(enemyName)) return;
+            GameObject enemy = (GameObject)obj; 
+            if (mEnemySet.Contains(enemy)) return;
 
-            mEnemySet.Add((string)enemyName);
-            LifeObject current = GetCurrentLifeObject();
-            switch (current)
+            mEnemySet.Add(enemy);
+            string tag = enemy.tag;
+
+            if (tag == "Enemy_Facemask" && mCurrentFacemask > 0)
             {
-                case LifeObject.Main: SetLifeValue(-10.0f); ; break;
-                case LifeObject.Needle: SetNeedleCountByDiff(-1); break;
-                case LifeObject.Mask: SetFacemaskCountByDiff(-1); break;
-                default: break;
+                SetFacemaskCountByDiff(-1);
+                if (mCurrentFacemask <= 0)
+                {
+                    ValueBar.UpdateFormat barValue = new ValueBar.UpdateFormat
+                    {
+                        name = LifeObject.Mask.ToString(),
+                        value = 0.0f,
+                    };
+                    mEventStore.Notify("onSetFixedBarValue", this, barValue);
+                }
+                return;
             }
+
+            if (tag == "Enemy_Needle " && mCurrentNeedle > 0)
+            {
+                SetNeedleCountByDiff(-1);
+                if (mCurrentNeedle <= 0)
+                {
+                    ValueBar.UpdateFormat barValue = new ValueBar.UpdateFormat
+                    {
+                        name = LifeObject.Needle.ToString(),
+                        value = 0.0f,
+                    };
+                    mEventStore.Notify("onSetFixedBarValue", this, barValue);
+                }
+                return;
+            }
+
+            SetLifeValue(-5.0f);
         }
 
-        private void HandleEnemyLeave(object enemyName)
+        private void HandleEnemyLeave(object enemy)
         {
-            mEnemySet.Remove((string)enemyName);
+            mEnemySet.Remove((GameObject)enemy);
         }
 
         private void SetLifeValue(float v)
