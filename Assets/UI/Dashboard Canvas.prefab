@@ -734,6 +734,8 @@ GameObject:
   - component: {fileID: 2806220514187016753}
   - component: {fileID: 2428268587023576437}
   - component: {fileID: 1224484419235111596}
+  - component: {fileID: 9032938862263297823}
+  - component: {fileID: 2653631978668953655}
   m_Layer: 5
   m_Name: Dashboard Canvas
   m_TagString: Untagged
@@ -782,7 +784,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &2876675307131256658
 MonoBehaviour:
@@ -859,6 +861,37 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!95 &9032938862263297823
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863636678363353357}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fc7a47c966787b941a213472414b9118, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!225 &2653631978668953655
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1863636678363353357}
+  m_Enabled: 1
+  m_Alpha: 0
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &2036912718094115396
 GameObject:
   m_ObjectHideFlags: 0

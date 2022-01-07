@@ -17,7 +17,7 @@ namespace COVID_RUSH
             mEventStore.Register("onPopupCongratulation", this, (_, p) => StartCoroutine(Popup(PopupType.Congratulation)));
             mEventStore.Register("onPopupLoading", this, (_, p) => StartCoroutine(Popup(PopupType.Loading)));
             mEventStore.Register("onPopupCountdown", this, (_, p) => StartCoroutine(Popup(PopupType.Countdown, 4)));
-            mEventStore.Register("onShowScoreDashboard", this, (_, p) => StartCoroutine(Popup(PopupType.Dashboard)));
+            mEventStore.Register("onShowScoreDashboard", this, (_, p) => Show(PopupType.Dashboard));
         }
 
         private void OnDestroy()

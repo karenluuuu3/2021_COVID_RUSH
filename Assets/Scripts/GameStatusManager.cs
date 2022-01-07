@@ -107,7 +107,6 @@ namespace COVID_RUSH
 
         private void Scoring()
         {
-            Debug.Log(mScore.facemaskCount);
             Dictionary<string, string> dict = new Dictionary<string, string>
             {
                 { nameof(mScore.vaccineCount), mScore.vaccineCount.ToString() },
@@ -121,6 +120,7 @@ namespace COVID_RUSH
             };
             mEventStore.Notify("onVariableChange", this, dict);
         }
+
         private void HandleBarZeroing(object bn)
         {
             string barName = (string)bn;

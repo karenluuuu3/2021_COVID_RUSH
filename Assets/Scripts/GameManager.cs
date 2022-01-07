@@ -53,7 +53,7 @@ namespace COVID_RUSH
             {
                 mGameState = GameState.LevelEnd;
                 ShowCongratulation();
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(3);
                 ShowScoreDashboard();
             }
 
@@ -110,7 +110,7 @@ namespace COVID_RUSH
             {
                 mGameState = GameState.LevelEnd;
                 ShowWasted();
-                yield return new WaitForSeconds(2);
+                yield return new WaitForSeconds(3);
                 ShowScoreDashboard();
             }
 

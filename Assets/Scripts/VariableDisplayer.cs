@@ -30,7 +30,6 @@ namespace COVID_RUSH
             string content;
             if (dict.TryGetValue(variableName, out content))
             {
-                Debug.Log(content);
                 displayer.text = content;
             }
         }
