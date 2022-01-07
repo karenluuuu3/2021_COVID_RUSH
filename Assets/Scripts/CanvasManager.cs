@@ -8,7 +8,7 @@ namespace COVID_RUSH
     {
         private Animator mAnimator;
         private EventStore mEventStore = EventStore.instance;
-        public enum PopupType { Idle, Loading, Congratulation, Wasted, Countdown };
+        public enum PopupType { Idle, Loading, Congratulation, Wasted, Countdown, Dashboard };
 
         void Start()
         {
@@ -17,6 +17,7 @@ namespace COVID_RUSH
             mEventStore.Register("onPopupCongratulation", this, (_, p) => StartCoroutine(Popup(PopupType.Congratulation)));
             mEventStore.Register("onPopupLoading", this, (_, p) => StartCoroutine(Popup(PopupType.Loading)));
             mEventStore.Register("onPopupCountdown", this, (_, p) => StartCoroutine(Popup(PopupType.Countdown, 4)));
+            mEventStore.Register("onShowScoreDashboard", this, (_, p) => StartCoroutine(Popup(PopupType.Dashboard)));
         }
 
         private void OnDestroy()
@@ -28,7 +29,16 @@ namespace COVID_RUSH
         {
             mAnimator.SetInteger("popupType", (int)popupType);
             yield return new WaitForSeconds(duration);
-            Debug.Log(duration);
+            mAnimator.SetInteger("popupType", (int)PopupType.Idle);
+        }
+
+        public void Show(object popupType)
+        {
+            mAnimator.SetInteger("popupType", (int)popupType);
+        }
+
+        public void Hide()
+        {
             mAnimator.SetInteger("popupType", (int)PopupType.Idle);
         }
     }

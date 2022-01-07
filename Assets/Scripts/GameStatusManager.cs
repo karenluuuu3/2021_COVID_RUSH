@@ -15,9 +15,11 @@ namespace COVID_RUSH
         public int VaccineScore { get { return 7 * vaccineCount; } }
         public int NeedleScore { get { return 5 * vaccineCount; } }
         public int FacemaskScore { get { return 3 * vaccineCount; } }
-        public int GetScore(int endTime)
+        public int TimeScore { get { return -Mathf.Abs(duration - time); } }
+        public int duration = 0;
+        public int GetScore()
         {
-            return VaccineScore + NeedleScore + FacemaskScore - Mathf.Abs(endTime - time);
+            return VaccineScore + NeedleScore + FacemaskScore + TimeScore;
         }
 
         public void Reset()
@@ -60,6 +62,8 @@ namespace COVID_RUSH
             mEventStore.Register("onEnemyEnter", this, (_, p) => HandleEnemyEnter(p));
             mEventStore.Register("onSetLevelTiming", this, (_, p) => SetTiming(p));
             mEventStore.Register("onStartTiming", this, (_, p) => StartTiming());
+
+            InvokeRepeating(nameof(UpdateDuration), 4.0f, 1.0f);
         }
 
         void Awake()
@@ -91,6 +95,7 @@ namespace COVID_RUSH
             }
         }
 
+        private void UpdateDuration() { mScore.duration++; }
         private bool IsLevelEnd() { return mCurrentTiming == 0; }
 
         private LifeObject GetCurrentLifeObject()
@@ -100,12 +105,29 @@ namespace COVID_RUSH
             return LifeObject.Main;
         }
 
+        private void Scoring()
+        {
+            Debug.Log(mScore.facemaskCount);
+            Dictionary<string, string> dict = new Dictionary<string, string>
+            {
+                { nameof(mScore.vaccineCount), mScore.vaccineCount.ToString() },
+                { nameof(mScore.needleCount), mScore.needleCount.ToString() },
+                { nameof(mScore.facemaskCount), mScore.facemaskCount.ToString() },
+                { nameof(mScore.VaccineScore), mScore.VaccineScore.ToString() },
+                { nameof(mScore.NeedleScore), mScore.NeedleScore.ToString() },
+                { nameof(mScore.FacemaskScore), mScore.FacemaskScore.ToString() },
+                { nameof(mScore.TimeScore), mScore.TimeScore.ToString() },
+                { "Total", mScore.GetScore().ToString() }
+            };
+            mEventStore.Notify("onVariableChange", this, dict);
+        }
         private void HandleBarZeroing(object bn)
         {
             string barName = (string)bn;
             if (barName == LifeObject.Main.ToString())
             {
                 SetTiming(0);
+                Scoring();
                 mEventStore.Notify("onPlayerDied", this, null);
                 return;
             }
@@ -203,7 +225,7 @@ namespace COVID_RUSH
             string value = String.Concat(Enumerable.Repeat("y", mCurrentNeedle));
             Dictionary<string, string> dict = new Dictionary<string, string>
                 {
-                    { "needleCount", value },
+                    { "currentNeedleCount", value },
                 };
             mEventStore.Notify("onVariableChange", this, dict);
 
@@ -224,7 +246,7 @@ namespace COVID_RUSH
             string value = String.Concat(Enumerable.Repeat("m", mCurrentFacemask));
             Dictionary<string, string> dict = new Dictionary<string, string>
                 {
-                    { "facemaskCount", value },
+                    { "currentFacemaskCount", value },
                 };
             mEventStore.Notify("onVariableChange", this, dict);
 
@@ -259,7 +281,7 @@ namespace COVID_RUSH
             int sec = mCurrentTiming % 60;
             Dictionary<string, string> dict = new Dictionary<string, string>
             {
-                { "timing", (min < 10 ? "0" : "") + min.ToString() + ":" + (sec < 10 ? "0" : "") + sec.ToString() },
+                { "currentTiming", (min < 10 ? "0" : "") + min.ToString() + ":" + (sec < 10 ? "0" : "") + sec.ToString() },
             };
             mEventStore.Notify("onVariableChange", this, dict);
         }

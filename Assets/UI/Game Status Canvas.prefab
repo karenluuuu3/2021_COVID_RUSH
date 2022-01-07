@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0ed90923acb9cd4985e3aadc967ddcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  variableName: timing
+  variableName: currentTiming
   displayer: {fileID: 6774109468612765591}
 --- !u!1 &2722412420962340124
 GameObject:
@@ -2269,7 +2269,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0ed90923acb9cd4985e3aadc967ddcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  variableName: facemaskCount
+  variableName: currentFacemaskCount
   displayer: {fileID: 6213356508265547945}
 --- !u!1 &6213356509009396730
 GameObject:
@@ -2837,7 +2837,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0ed90923acb9cd4985e3aadc967ddcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  variableName: needleCount
+  variableName: currentNeedleCount
   displayer: {fileID: 6213356509515350986}
 --- !u!1 &6213356509515350984
 GameObject:

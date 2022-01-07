@@ -54,8 +54,7 @@ namespace COVID_RUSH
                 mGameState = GameState.LevelEnd;
                 ShowCongratulation();
                 yield return new WaitForSeconds(2);
-                
-                // TODO: Add dashboard
+                ShowScoreDashboard();
             }
 
             StartCoroutine(func());
@@ -112,8 +111,7 @@ namespace COVID_RUSH
                 mGameState = GameState.LevelEnd;
                 ShowWasted();
                 yield return new WaitForSeconds(2);
-
-                // TODO: Add dashboard
+                ShowScoreDashboard();
             }
 
             StartCoroutine(func());
@@ -154,6 +152,12 @@ namespace COVID_RUSH
         {
             EventManager.Notify("onPopupLoading", this, null);
         }
+
+        private void ShowScoreDashboard()
+        {
+            EventManager.Notify("onShowScoreDashboard", this, null);
+        }
+
         private void StartCountdown()
         {
             EventManager.Notify("onPopupCountdown", this, null);
