@@ -161,7 +161,7 @@ namespace COVID_RUSH
         private void StartCountdown()
         {
             EventManager.Notify("onPopupCountdown", this, null);
-            EventManager.Notify("onPlayAudioSource", this, AudioManager.AudioType.CountDown);
+            //EventManager.Notify("onPlayAudioSource", this, AudioManager.AudioType.CountDown);
         }
         private void StartTiming()
         {

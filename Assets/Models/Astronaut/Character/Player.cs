@@ -44,13 +44,27 @@ public class Player : MonoBehaviour {
 			}
 			//else moveDirection.z =5;
 		}
+		else if (Input.GetKey("a")) {
+			if (playerState != 2) playerState = 1;
+			else {
+				moveDirection.z = (transform.right * Input.GetAxis("Horizontal") * speed).z;
+				moveDirection.x = (transform.right * Input.GetAxis("Horizontal") * speed).x;
+			}
+		}
+		else if (Input.GetKey("d")) {
+			if (playerState != 2) playerState = 1;
+			else {
+				moveDirection.z = (transform.right * Input.GetAxis("Horizontal") * speed).z;
+				moveDirection.x = (transform.right * Input.GetAxis("Horizontal") * speed).x;
+			}
+		}
 		else if (Input.GetKey(KeyCode.Space)) {
 			if (playerState != 2) {
 				moveDirection.y = 10;
 				playerState = 2;
 			}
 		}
-		else if (Input.GetKeyUp("w") || Input.GetKeyUp("s") && playerState != 2) {
+		else if (Input.GetKeyUp("w") || Input.GetKeyUp("s") || Input.GetKeyUp("a") || Input.GetKeyUp("d") && playerState != 2) {
 			moveDirection.z = 0;
 			playerState = 0;
 		}
@@ -60,11 +74,14 @@ public class Player : MonoBehaviour {
 	void MovementCon() {
 		if (controller.isGrounded) {
 			moveDirection = transform.forward * Input.GetAxis("Vertical") * speed;
+			moveDirection += transform.right * Input.GetAxis("Horizontal") *speed;
 			if (playerState == 2) playerState = 0;  //if is jumping
 													//anim.SetInteger ("AnimationPar", 0);
 		}
-		float turn = Input.GetAxis("Horizontal");
-		transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
+		//float turn = Input.GetAxis("Horizontal");
+
+		//transform.Rotate(0, turn * turnSpeed * Time.deltaTime, 0);
+		transform.Rotate (0, Input.GetAxis("Mouse X") * 1f, 0);
 		controller.Move(moveDirection * Time.deltaTime);
 		moveDirection.y -= gravity * Time.deltaTime;
 	}

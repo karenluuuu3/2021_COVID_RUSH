@@ -6,8 +6,8 @@ public class PlayerControl : MonoBehaviour
 {
     // Start is called before the first frame update
     
-    public float MoveSpeed = 100f;       //移動速度
-    public float RotateSpeed = 5f;     //旋轉速度
+    public float MoveSpeed = 1000f;       //移動速度
+    public float RotateSpeed = 20f;     //旋轉速度
     public Rigidbody PlayerRigidbody;
     public bool jumpState = false;
     void Start()

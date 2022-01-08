@@ -16,6 +16,8 @@ public class SpectrumHit : MonoBehaviour
 	private float m_timer;
     protected bool m_isBeat;
 	public bool switchFalg = false;
+	public GameObject [] g1;
+	public GameObject [] g2;
     private Color green = new Color(0f,1f,0f,1f);
 	private Color red = new Color(1f,0f,0f,1f);
     public virtual void OnBeat()
@@ -26,12 +28,28 @@ public class SpectrumHit : MonoBehaviour
 		switchFalg = !switchFalg;
 		Debug.Log(switchFalg);
 		if (switchFalg){
-			Group1.color = red;
-			Group2.color = green;
-		}
-		else{
 			Group1.color = green;
 			Group2.color = red;
+			g1 = GameObject.FindGameObjectsWithTag("Red");
+			g2 = GameObject.FindGameObjectsWithTag("Green");
+			foreach(GameObject sqr in g1){
+				sqr.tag="Green";
+			}
+			foreach(GameObject sqr in g2){
+				sqr.tag="Red";
+			}
+		}
+		else{
+			Group1.color = red;
+			Group2.color = green;
+			g1 = GameObject.FindGameObjectsWithTag("Red");
+			g2 = GameObject.FindGameObjectsWithTag("Green");
+			foreach(GameObject sqr in g1){
+				sqr.tag="Green";
+			}
+			foreach(GameObject sqr in g2){
+				sqr.tag="Red";
+			}
 		}
 	}
 
@@ -64,8 +82,8 @@ public class SpectrumHit : MonoBehaviour
 	}
     void Start()
     {
-        Group1.color = green;
-		Group2.color = red;
+        Group1.color = red;
+		Group2.color = green;
     }
 
     // Update is called once per frame
