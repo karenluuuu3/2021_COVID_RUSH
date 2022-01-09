@@ -11,7 +11,7 @@ namespace COVID_RUSH {
         void Start()
         {
             ps = GetComponent<ParticleSystem>();
-            mEventStore.Register("onRanking", this, (_, p) => Emit());
+            // mEventStore.Register("onRanking", this, (_, p) => Emit());
         }
 
         private void OnDestroy()
@@ -21,7 +21,6 @@ namespace COVID_RUSH {
 
         private void Emit()
         {
-            Debug.Log("emit");
             ps.Play();
         }
     }

@@ -12,9 +12,9 @@ namespace COVID_RUSH
         void Start()
         {
             mEventStore.Register("onCreateFlag", this, (_, p) => SetFlag());
-            gameObject.transform.position -= new Vector3(0, 10, 0);
-            GameObject obj = GameObject.Find("Circle"); //.gameObject.GetComponent<Renderer>();
-            Debug.Log(obj);
+            Vector3 p = gameObject.transform.position;
+            gameObject.transform.position = new Vector3(p.x, -10, p.z);
+            GameObject obj = GameObject.Find("Circle");
             marker = obj.GetComponent<Renderer>();
             Color c = marker.material.color;
             c.a = 0;
@@ -29,8 +29,8 @@ namespace COVID_RUSH
         private void SetFlag()
         {
             Vector3 pos = gameObject.transform.position;
-            Debug.Log(pos);
-            gameObject.transform.position = pos + new Vector3(0, 10, 0);
+            Vector3 p = gameObject.transform.position;
+            gameObject.transform.position = new Vector3(p.x, 0.4f, p.z);
             Color c = marker.material.color;
             c.a = 1;
             marker.material.color = c;

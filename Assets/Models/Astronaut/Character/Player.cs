@@ -143,7 +143,6 @@ public class Player : MonoBehaviour {
 			GetComponent<AudioSource>().Play();// get
 			mEventStore.Notify("onPickupItem", this, colliderClass);
 			GameObject obj = col.gameObject;
-			Debug.Log(obj + " , " +  obj.GetComponent<ParticleSystem>());
 			if (obj && obj.GetComponent<ParticleSystem>())
             {
 				obj.GetComponent<ParticleSystem>().Play();

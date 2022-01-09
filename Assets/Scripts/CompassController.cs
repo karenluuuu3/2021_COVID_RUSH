@@ -22,7 +22,8 @@ namespace COVID_RUSH
             [0] = "N",
             [90] = "E",
             [180] = "S",
-            [270] = "W"
+            [270] = "W",
+            [360] = "N"
         };
 
         void Start()
@@ -110,7 +111,7 @@ namespace COVID_RUSH
         private void ChangePlayerDirection(object direction)
         {
             Vector2 dir = (Vector2)direction;
-            float deg = (Mathf.Atan2(dir.y, dir.x)) * (180 / Mathf.PI);
+            float deg = (Mathf.Atan2(dir.y, dir.x)) * (180 / Mathf.PI) + 90;
             int approximatedDeg = GetApproximatedDegree(deg);
 
             if (approximatedDeg != mMainDegree)
@@ -123,7 +124,7 @@ namespace COVID_RUSH
         private void ChangeDestination(object destinationDirection)
         {
             Vector2 dir = (Vector2)destinationDirection;
-            float deg = (Mathf.Atan2(dir.y, dir.x)) * (180 / Mathf.PI);
+            float deg = (Mathf.Atan2(-dir.y, dir.x)) * (180 / Mathf.PI) + 90;
             if (Mathf.Abs(deg - mMainDegree) > 25)
             {
                 marker.SetActive(false);

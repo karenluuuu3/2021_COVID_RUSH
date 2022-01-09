@@ -161,7 +161,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -4987,7 +4987,6 @@ GameObject:
   - component: {fileID: 7680073054609152384}
   - component: {fileID: 6469166869281360322}
   - component: {fileID: 6468471015679641274}
-  - component: {fileID: 710305792685069293}
   m_Layer: 0
   m_Name: FX
   m_TagString: Untagged
@@ -5031,7 +5030,7 @@ ParticleSystem:
   emitterVelocityMode: 0
   looping: 1
   prewarm: 1
-  playOnAwake: 0
+  playOnAwake: 1
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9800,15 +9799,3 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &710305792685069293
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6558296082006471502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e930baea308a80d4cb318c3276238449, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

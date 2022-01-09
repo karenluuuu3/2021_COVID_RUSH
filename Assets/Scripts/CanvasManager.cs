@@ -36,7 +36,7 @@ namespace COVID_RUSH
         {
             mAnimator.SetInteger("popupType", (int)popupType);
 
-            if ((PopupType)popupType == PopupType.Dashboard)
+            /*if ((PopupType)popupType == PopupType.Dashboard)
             {
                 IEnumerator func()
                 {
@@ -44,7 +44,7 @@ namespace COVID_RUSH
                     mEventStore.Notify("onRanking", this, null);
                 }
                 StartCoroutine(func());
-            }
+            }*/
         }
 
         public void Hide(int duration=2)
