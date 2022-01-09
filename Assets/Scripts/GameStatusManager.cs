@@ -63,7 +63,7 @@ namespace COVID_RUSH
             mEventStore.Register("onSetLevelTiming", this, (_, p) => SetTiming(p));
             mEventStore.Register("onStartTiming", this, (_, p) => StartTiming());
 
-            InvokeRepeating(nameof(UpdateDuration), 4.0f, 1.0f);
+            InvokeRepeating(nameof(UpdateDuration), 0.0f, 1.0f);
         }
 
         void Awake()
@@ -96,7 +96,7 @@ namespace COVID_RUSH
         }
 
         private void UpdateDuration() { mScore.duration++; }
-        private bool IsLevelEnd() { return mCurrentTiming == 0; }
+        private bool IsLevelEnd() { return mCurrentTiming <= 0; }
 
         private LifeObject GetCurrentLifeObject()
         {
@@ -276,6 +276,7 @@ namespace COVID_RUSH
 
         private void SetTiming(object timing)
         {
+            if ((int) timing < 0) return;
             mCurrentTiming = (int)timing;
             int min = Mathf.FloorToInt(mCurrentTiming / 60);
             int sec = mCurrentTiming % 60;

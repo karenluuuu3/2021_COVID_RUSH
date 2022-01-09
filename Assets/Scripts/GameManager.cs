@@ -7,7 +7,7 @@ namespace COVID_RUSH
     public class GameManager : MonoBehaviour
     {
         public static GameManager instance = null;
-        private int mCurrentLevel = 1;
+        private int mCurrentLevel = 0;
         private int currentVolume = 50;
 
         private EventStore EventManager = EventStore.instance;
@@ -37,6 +37,7 @@ namespace COVID_RUSH
         {
             EventManager.Register("showWasted", this, (c,p) => ShowWasted());
             EventManager.Register("onPlayerDied", this, (_, p) => LevelLose());
+            EventManager.Register("onClosePopup", this, (_, p) => HandleCloseDashboard((CanvasManager.PopupType) p));
         }
 
         private void FixedUpdate()
@@ -85,8 +86,8 @@ namespace COVID_RUSH
                 yield return new WaitForSeconds(2);
                 // TODO: Use an enum to map state-to-code
                 // 1 = scene of level 1
-                EventManager.Notify("onLoadScene", this, mCurrentLevel);
-                yield return new WaitForSeconds(1);
+                EventManager.Notify("onLoadScene", this, ++mCurrentLevel);
+                // yield return new WaitForSeconds(1);
                 // StartCountdown();
                 // yield return new WaitForSeconds(4);
                 mGameState = GameState.Gaming;
@@ -102,6 +103,14 @@ namespace COVID_RUSH
             Dictionary<string, string> variableDict = new Dictionary<string, string>();
             variableDict.Add("volume", currentVolume.ToString() + "%");
             EventManager.Notify("onVariableChange", this, variableDict);
+        }
+
+        private void HandleCloseDashboard(CanvasManager.PopupType popupType)
+        {
+            if (popupType == CanvasManager.PopupType.Dashboard)
+            {
+                SwitchToNewGame();
+            }
         }
 
         private void LevelLose()

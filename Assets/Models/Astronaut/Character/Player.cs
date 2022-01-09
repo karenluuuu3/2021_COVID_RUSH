@@ -146,7 +146,8 @@ public class Player : MonoBehaviour {
 
     void Update (){
 		// TODO: Uncomment this if you want to start with Start Scene
-		// if (!GameManager.instance.IsGaming()) return;
+		if (!GameManager.instance.IsGaming()) return;
+
 		MovementCon();
 		KeyEnventCon();
 		UpdateCompass();

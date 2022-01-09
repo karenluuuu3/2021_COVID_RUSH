@@ -37,9 +37,16 @@ namespace COVID_RUSH
             mAnimator.SetInteger("popupType", (int)popupType);
         }
 
-        public void Hide()
+        public void Hide(int duration=2)
         {
-            mAnimator.SetInteger("popupType", (int)PopupType.Idle);
+            IEnumerator func()
+            {
+                mAnimator.SetInteger("popupType", (int)PopupType.Idle);
+                yield return new WaitForSeconds(duration);
+                mEventStore.Notify("onClosePopup", this, PopupType.Dashboard);
+            }
+
+            StartCoroutine(func());
         }
     }
 }
