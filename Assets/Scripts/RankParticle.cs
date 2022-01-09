@@ -21,6 +21,7 @@ namespace COVID_RUSH {
 
         private void Emit()
         {
+            Debug.Log("emit");
             ps.Play();
         }
     }

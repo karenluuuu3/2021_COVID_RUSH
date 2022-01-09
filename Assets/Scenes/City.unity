@@ -21393,7 +21393,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 927668548335296974, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
       propertyPath: m_SortingOrder
-      value: 3
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 927668548335296974, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
+      propertyPath: m_PlaneDistance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1224484419235111596, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
       propertyPath: m_RaycastTarget

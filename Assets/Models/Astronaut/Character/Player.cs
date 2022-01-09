@@ -142,6 +142,12 @@ public class Player : MonoBehaviour {
 			collectParticle.Play();
 			GetComponent<AudioSource>().Play();// get
 			mEventStore.Notify("onPickupItem", this, colliderClass);
+			GameObject obj = col.gameObject;
+			Debug.Log(obj + " , " +  obj.GetComponent<ParticleSystem>());
+			if (obj && obj.GetComponent<ParticleSystem>())
+            {
+				obj.GetComponent<ParticleSystem>().Play();
+            }
 		}
 	}
 
@@ -158,7 +164,6 @@ public class Player : MonoBehaviour {
 	{
 		if (IsHitEnemy(other.gameObject.tag))
 		{
-			hitParticle.Play();
 			mEventStore.Notify("onEnemyLeave", this, other.gameObject);
 		}
 	}
