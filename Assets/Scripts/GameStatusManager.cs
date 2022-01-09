@@ -322,7 +322,7 @@ namespace COVID_RUSH
             if (timing <= 0) return;
             hasSetFlag = false;
             mScore.duration = 0;
-            mCurrentTiming = 10;
+            mCurrentTiming = timing;
             mScore.time = mCurrentTiming;
             SetTiming(mCurrentTiming);
             InvokeRepeating(nameof(UpdateDuration), 0.0f, 1.0f);
