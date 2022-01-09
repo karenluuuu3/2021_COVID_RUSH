@@ -109,7 +109,6 @@ namespace COVID_RUSH
 
         private void HandleCloseDashboard(CanvasManager.PopupType popupType)
         {
-            Debug.Log(mCurrentLevel + ", " + (popupType == CanvasManager.PopupType.Dashboard));
             if (popupType == CanvasManager.PopupType.Dashboard)
             {
                 SwitchToNewGame();
