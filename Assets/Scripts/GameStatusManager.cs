@@ -156,7 +156,7 @@ namespace COVID_RUSH
             ValueBar.UpdateFormat value = new ValueBar.UpdateFormat
             {
                 name = GetCurrentLifeObject().ToString(),
-                value = -3.0f, // -0.075f,
+                value = -0.075f, // -3.0f, // 
             };
             mEventStore.Notify("onSetBarValueByDiff", this, value);
         }
