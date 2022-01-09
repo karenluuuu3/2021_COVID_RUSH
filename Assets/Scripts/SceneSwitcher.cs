@@ -16,6 +16,11 @@ namespace COVID_RUSH
             mEventStore.Register("onSceneSwitch", this, (_, param) => Switch(param));
             mEventStore.Register("onLoadScene", this, (_, param) => Load(param));
         }
+        private void OnDestroy()
+        {
+            mEventStore.RemoveLisenterFromAllEvent(this);
+        }
+
         public void Switch(object gameState)
         {
             mAnimator.SetInteger("GameState", (int)gameState);

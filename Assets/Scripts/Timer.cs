@@ -64,6 +64,11 @@ namespace COVID_RUSH
             }
         }
 
+        private void OnDestroy()
+        {
+            mEventStore.RemoveLisenterFromAllEvent(this);
+        }
+
         private void FixedUpdate()
         {
             if (!canSample())

@@ -26,6 +26,10 @@ public class Player : MonoBehaviour {
 		AudioSource audio = GetComponent<AudioSource>();
 		UpdateCompass();
 	}
+	private void OnDestroy()
+	{
+		mEventStore.RemoveLisenterFromAllEvent(this);
+	}
 
 	void KeyEnventCon() {
 		if (Input.GetKey("s")) {

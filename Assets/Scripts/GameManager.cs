@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 namespace COVID_RUSH
@@ -38,7 +39,7 @@ namespace COVID_RUSH
             EventManager.Register("showWasted", this, (c,p) => ShowWasted());
             EventManager.Register("onPlayerDied", this, (_, p) => LevelLose());
             EventManager.Register("onClosePopup", this, (_, p) => HandleCloseDashboard((CanvasManager.PopupType) p));
-            EventManager.Register("onBackToMenu", this, (_, p) => Reset());
+            EventManager.Register("onBackToMenu", this, (_, p) => HandleReset());
         }
 
         private void FixedUpdate()
@@ -87,7 +88,7 @@ namespace COVID_RUSH
                 yield return new WaitForSeconds(2);
                 // TODO: Use an enum to map state-to-code
                 // 1 = scene of level 1
-                EventManager.Notify("onLoadScene", this, ++mCurrentLevel);
+                SceneManager.LoadScene(++mCurrentLevel);
                 // yield return new WaitForSeconds(1);
                 // StartCountdown();
                 // yield return new WaitForSeconds(4);
@@ -108,6 +109,7 @@ namespace COVID_RUSH
 
         private void HandleCloseDashboard(CanvasManager.PopupType popupType)
         {
+            Debug.Log(mCurrentLevel + ", " + (popupType == CanvasManager.PopupType.Dashboard));
             if (popupType == CanvasManager.PopupType.Dashboard)
             {
                 SwitchToNewGame();
@@ -178,9 +180,9 @@ namespace COVID_RUSH
             EventManager.Notify("onStartTiming", this, null);
         }
 
-        private void Reset()
+        private void HandleReset()
         {
-            EventManager.Notify("onLoadScene", this, 0);
+            SceneManager.LoadScene(0);
             SwitchToStartScene();
         }
     }

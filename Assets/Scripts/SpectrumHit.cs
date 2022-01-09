@@ -26,7 +26,7 @@ public class SpectrumHit : MonoBehaviour
 		m_timer = 0;
 		m_isBeat = true;
 		switchFalg = !switchFalg;
-		Debug.Log(switchFalg);
+		// Debug.Log(switchFalg);
 		if (switchFalg){
 			Group1.color = green;
 			Group2.color = red;
@@ -91,6 +91,6 @@ public class SpectrumHit : MonoBehaviour
     {
         OnUpdate();
 
-		Debug.Log(m_audioValue);
+		// Debug.Log(m_audioValue);
     }
 }

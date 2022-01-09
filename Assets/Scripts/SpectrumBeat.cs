@@ -31,7 +31,7 @@ public class SpectrumBeat : MonoBehaviour
 		m_timer = 0;
 		m_isBeat = true;
 		switchFalg = !switchFalg;
-		Debug.Log(switchFalg);
+		// Debug.Log(switchFalg);
 		if (switchFalg){
 			Group1.SetFloat("_Metallic",0.25f);
 			Group2.SetFloat("_Metallic",0.25f);

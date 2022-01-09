@@ -33,6 +33,11 @@ namespace COVID_RUSH
             mMainDegree = 0;
         }
 
+        private void OnDestroy()
+        {
+            EventStore.instance.RemoveLisenterFromAllEvent(this);
+        }
+
         private bool IsValidDestination(Vector2 pos) { return pos.x != 0 || pos.y != 0; }
 
         private void UpdateMainIndicator(int deg)

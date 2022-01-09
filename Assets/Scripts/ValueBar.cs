@@ -32,7 +32,12 @@ namespace COVID_RUSH
             mEventStore.Register("onSetBarValueByDiff", this, (_, p) => SetNextValueByDiff(p));
             mEventStore.Register("onSetFixedBarValue", this, (_, p) => SetFixedBarValue(p));
         }
-        
+
+        private void OnDestroy()
+        {
+            mEventStore.RemoveLisenterFromAllEvent(this);
+        }
+
         void FixedUpdate()
         {
             if (value < mNextValue)

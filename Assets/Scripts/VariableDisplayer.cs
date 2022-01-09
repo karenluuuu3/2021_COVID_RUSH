@@ -24,6 +24,11 @@ namespace COVID_RUSH
             EventStore.instance.Register("onVariableChange", this, (_, param) => UpdateVariable(param));
         }
 
+        private void OnDestroy()
+        {
+            EventStore.instance.RemoveLisenterFromAllEvent(this);
+        }
+
         private void UpdateVariable(object value)
         {
             Dictionary<string, string> dict = (Dictionary<string, string>) value;
