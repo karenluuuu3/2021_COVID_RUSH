@@ -13,8 +13,8 @@ namespace COVID_RUSH
         public int needleCount = 0;
         public int time = 0;
         public int VaccineScore { get { return 7 * vaccineCount; } }
-        public int NeedleScore { get { return 5 * vaccineCount; } }
-        public int FacemaskScore { get { return 3 * vaccineCount; } }
+        public int NeedleScore { get { return 5 * needleCount; } }
+        public int FacemaskScore { get { return 3 * facemaskCount; } }
         public int TimeScore { get { return -Mathf.Abs(duration - time); } }
         public int duration = 0;
         public int GetScore()
