@@ -48,5 +48,10 @@ namespace COVID_RUSH
 
             StartCoroutine(func());
         }
+
+        public void OnBackToMenu()
+        {
+            mEventStore.Notify("onBackToMenu", this, null);
+        }
     }
 }

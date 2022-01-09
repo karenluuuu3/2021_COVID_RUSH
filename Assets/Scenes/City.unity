@@ -3333,7 +3333,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1330558566379652850, guid: 49fdc0d0cbcb28f4ba62e7eb78a1eedc, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 49fdc0d0cbcb28f4ba62e7eb78a1eedc, type: 3}
 --- !u!1001 &165322940
 PrefabInstance:
@@ -10310,7 +10311,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 993421230585132752, guid: f7321a6b448bc9843ab5713ab911d2c6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 993421230585132752, guid: f7321a6b448bc9843ab5713ab911d2c6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -10322,7 +10323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 993421230585132752, guid: f7321a6b448bc9843ab5713ab911d2c6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Hide
+      value: OnBackToMenu
       objectReference: {fileID: 0}
     - target: {fileID: 993421230585132752, guid: f7321a6b448bc9843ab5713ab911d2c6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName

@@ -38,6 +38,7 @@ namespace COVID_RUSH
             EventManager.Register("showWasted", this, (c,p) => ShowWasted());
             EventManager.Register("onPlayerDied", this, (_, p) => LevelLose());
             EventManager.Register("onClosePopup", this, (_, p) => HandleCloseDashboard((CanvasManager.PopupType) p));
+            EventManager.Register("onBackToMenu", this, (_, p) => Reset());
         }
 
         private void FixedUpdate()
@@ -175,6 +176,12 @@ namespace COVID_RUSH
         private void StartTiming()
         {
             EventManager.Notify("onStartTiming", this, null);
+        }
+
+        private void Reset()
+        {
+            EventManager.Notify("onLoadScene", this, 0);
+            SwitchToStartScene();
         }
     }
 }
