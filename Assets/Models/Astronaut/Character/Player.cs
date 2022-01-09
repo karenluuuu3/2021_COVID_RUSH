@@ -132,7 +132,7 @@ public class Player : MonoBehaviour {
 
 	private void OnTriggerStay(Collider col)
 	{
-		bool isInInfectedArea = col.gameObject.tag == "Red";
+		bool isInInfectedArea = (col.gameObject.tag == "Red" || col.gameObject.tag == "Water");
 		if (isInInfectedArea)
 		{
 			mEventStore.Notify("onEnterInfectedArea", this, -0.1);
