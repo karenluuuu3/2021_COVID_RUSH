@@ -88,7 +88,7 @@ namespace COVID_RUSH
                 yield return new WaitForSeconds(2);
                 // TODO: Use an enum to map state-to-code
                 // 1 = scene of level 1
-                SceneManager.LoadScene(2);
+                SceneManager.LoadScene(++mCurrentLevel);
                 // yield return new WaitForSeconds(1);
                 // StartCountdown();
                 // yield return new WaitForSeconds(4);
