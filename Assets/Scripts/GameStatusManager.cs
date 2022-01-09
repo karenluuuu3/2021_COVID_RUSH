@@ -60,10 +60,8 @@ namespace COVID_RUSH
             mEventStore.Register("onBarZeroing", this, (_, p) => HandleBarZeroing(p));
             mEventStore.Register("onEnemyLeave", this, (_, p) => HandleEnemyLeave(p));
             mEventStore.Register("onEnemyEnter", this, (_, p) => HandleEnemyEnter(p));
-            mEventStore.Register("onSetLevelTiming", this, (_, p) => SetTiming(p));
+            mEventStore.Register("onSetLevelTiming", this, (_, p) => SetLevelTiming((int) p));
             mEventStore.Register("onStartTiming", this, (_, p) => StartTiming());
-
-            InvokeRepeating(nameof(UpdateDuration), 0.0f, 1.0f);
         }
 
         void Awake()
@@ -95,7 +93,14 @@ namespace COVID_RUSH
             }
         }
 
-        private void UpdateDuration() { mScore.duration++; }
+        private void UpdateDuration() {
+            mScore.duration++;
+            if (!IsLevelEnd())
+            {
+                SetTiming(mCurrentTiming - 1);
+            }
+        }
+
         private bool IsLevelEnd() { return mCurrentTiming <= 0; }
 
         private LifeObject GetCurrentLifeObject()
@@ -126,6 +131,7 @@ namespace COVID_RUSH
             string barName = (string)bn;
             if (barName == LifeObject.Main.ToString())
             {
+                CancelInvoke();
                 SetTiming(0);
                 Scoring();
                 mEventStore.Notify("onPlayerDied", this, null);
@@ -276,7 +282,6 @@ namespace COVID_RUSH
 
         private void SetTiming(object timing)
         {
-            if ((int) timing < 0) return;
             mCurrentTiming = (int)timing;
             int min = Mathf.FloorToInt(mCurrentTiming / 60);
             int sec = mCurrentTiming % 60;
@@ -289,16 +294,16 @@ namespace COVID_RUSH
 
         private void StartTiming()
         {
-            IEnumerator func()
-            {
-                while (!IsLevelEnd())
-                {
-                    yield return new WaitForSeconds(1);
-                    SetTiming(mCurrentTiming - 1);
-                }
-            }
 
-            StartCoroutine(func());
+        }
+
+        private void SetLevelTiming(int timing)
+        {
+            mScore.duration = 0;
+            mCurrentTiming = timing;
+            mScore.time = mCurrentTiming;
+            SetTiming(mCurrentTiming);
+            InvokeRepeating(nameof(UpdateDuration), 0.0f, 1.0f);
         }
     }
 }
