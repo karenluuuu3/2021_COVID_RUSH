@@ -85,10 +85,10 @@ namespace COVID_RUSH
                 yield return new WaitForSeconds(2);
                 // TODO: Use an enum to map state-to-code
                 // 1 = scene of level 1
-                EventManager.Notify("onLoadScene", this, 2);
+                EventManager.Notify("onLoadScene", this, mCurrentLevel);
                 yield return new WaitForSeconds(1);
-                StartCountdown();
-                yield return new WaitForSeconds(4);
+                // StartCountdown();
+                // yield return new WaitForSeconds(4);
                 mGameState = GameState.Gaming;
                 StartTiming();
             }
@@ -161,7 +161,7 @@ namespace COVID_RUSH
         private void StartCountdown()
         {
             EventManager.Notify("onPopupCountdown", this, null);
-            //EventManager.Notify("onPlayAudioSource", this, AudioManager.AudioType.CountDown);
+            EventManager.Notify("onPlayAudioSource", this, AudioManager.AudioType.CountDown);
         }
         private void StartTiming()
         {

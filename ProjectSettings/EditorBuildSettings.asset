@@ -9,11 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Start.unity
     guid: dd4a3f777861be84783e3da51f2fb974
   - enabled: 1
-    path: Assets/Scenes/Grass.unity
-    guid: eb02e990e0f47ab4d8ddcf2d4948628e
-  - enabled: 1
     path: Assets/Scenes/City.unity
     guid: 40ef6e60490d68541971945758777f58
+  - enabled: 1
+    path: Assets/Scenes/Grass.unity
+    guid: eb02e990e0f47ab4d8ddcf2d4948628e
   - enabled: 1
     path: Assets/Scenes/Crypt.unity
     guid: 119611f5d14e1de409b7582c9332add0

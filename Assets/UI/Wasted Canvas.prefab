@@ -283,6 +283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wasted
       objectReference: {fileID: 0}
+    - target: {fileID: -3888481672020999207, guid: d3969e9ab03d95b4fb8eb6a561a24ed0, type: 3}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8742538545776668643, guid: d3969e9ab03d95b4fb8eb6a561a24ed0, type: 3}
       propertyPath: m_RootOrder
       value: 1

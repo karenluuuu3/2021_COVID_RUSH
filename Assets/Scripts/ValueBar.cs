@@ -12,7 +12,7 @@ namespace COVID_RUSH
         [SerializeField]
         public float value = 100;
         private float mNextValue;
-        private float mStep = 0.1f;
+        private float mStep = 1.0f; // 0.1f;
         private RectTransform rectangle;
         private float width;
         private EventStore mEventStore = EventStore.instance;
