@@ -7,6 +7,7 @@ public class Player : MonoBehaviour {
 	private Animator anim;
 	private CharacterController controller;
 	private EventStore mEventStore = EventStore.instance;
+	private Vector2 flag;
 
 	public float speed = 600.0f;
 	public float turnSpeed = 400.0f;
@@ -25,11 +26,18 @@ public class Player : MonoBehaviour {
 		anim.SetInteger("AnimationPar", playerState);
 		AudioSource audio = GetComponent<AudioSource>();
 		UpdateCompass();
+
+		mEventStore.Register("onSetFlag", this, (_, p) => SetFlag((Vector2)p));
 	}
 	private void OnDestroy()
 	{
 		mEventStore.RemoveLisenterFromAllEvent(this);
 	}
+
+	private void SetFlag(Vector2 f)
+    {
+		flag = f;
+    }
 
 	void KeyEnventCon() {
 		if (Input.GetKey("s")) {
@@ -97,7 +105,7 @@ public class Player : MonoBehaviour {
 		mEventStore.Notify("onChangeForward", this, newDirection);
 
 		// TODO: Replace fixed destination position
-		Vector2 destinationDirection = new Vector2(45 - transform.position.x, -90 - transform.position.z);
+		Vector2 destinationDirection = new Vector2(flag.x - transform.position.x, flag.y - transform.position.z);
 		mEventStore.Notify("onChangeDestination", this, destinationDirection);
 	}
 
@@ -127,6 +135,13 @@ public class Player : MonoBehaviour {
         {
 			hitParticle.Play();
 			mEventStore.Notify("onEnemyEnter", this, col.gameObject);
+		}
+
+		if (colliderClass == "Destination")
+		{
+			collectParticle.Play();
+			GetComponent<AudioSource>().Play();// get
+			mEventStore.Notify("onPickupItem", this, colliderClass);
 		}
 	}
 

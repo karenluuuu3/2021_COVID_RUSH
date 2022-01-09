@@ -39,10 +39,11 @@ namespace COVID_RUSH
             public const string Vaccine = "Props_Vaccine";
             public const string Facemask = "Props_Facemask";
             public const string Needle = "Props_Needle";
+            public const string Destination = "Destination";
 
             public bool Contain(string key)
             {
-                return (Vaccine == key) || (Facemask == key) || (Needle == key);
+                return (Vaccine == key) || (Facemask == key) || (Needle == key) || (Destination == key);
             }
         }
         private ItemType mItemType = new ItemType();
@@ -51,6 +52,7 @@ namespace COVID_RUSH
         private int mCurrentNeedle = 0;
         private int mCurrentFacemask = 0;
         private int mCurrentTiming = 0;
+        private bool hasSetFlag = false;
         private HashSet<GameObject> mEnemySet = new HashSet<GameObject>();
 
         void Start()
@@ -98,7 +100,16 @@ namespace COVID_RUSH
             if (!IsLevelEnd())
             {
                 SetTiming(mCurrentTiming - 1);
+            } else if (!hasSetFlag)
+            {
+                SetFlag();
+                hasSetFlag = true;
             }
+        }
+
+        private void SetFlag()
+        {
+            mEventStore.Notify("onCreateFlag", this, null);
         }
 
         private bool IsLevelEnd() { return mCurrentTiming <= 0; }
@@ -156,7 +167,7 @@ namespace COVID_RUSH
             ValueBar.UpdateFormat value = new ValueBar.UpdateFormat
             {
                 name = GetCurrentLifeObject().ToString(),
-                value = -0.075f, // -3.0f, // 
+                value = -0.075f, // -10.0f, // 
             };
             mEventStore.Notify("onSetBarValueByDiff", this, value);
         }
@@ -275,9 +286,18 @@ namespace COVID_RUSH
                     case ItemType.Vaccine: PickUpVaccine(); break;
                     case ItemType.Needle: SetNeedleCountByDiff(1); break;
                     case ItemType.Facemask: SetFacemaskCountByDiff(1); break;
+                    case ItemType.Destination: LevelPass(); break;
                     default: break;
                 }
             }
+        }
+
+        private void LevelPass()
+        {
+            CancelInvoke();
+            SetTiming(0);
+            Scoring();
+            mEventStore.Notify("onLevelPass", this, null);
         }
 
         private void SetTiming(object timing)
@@ -299,8 +319,10 @@ namespace COVID_RUSH
 
         private void SetLevelTiming(int timing)
         {
+            if (timing <= 0) return;
+            hasSetFlag = false;
             mScore.duration = 0;
-            mCurrentTiming = timing;
+            mCurrentTiming = 10;
             mScore.time = mCurrentTiming;
             SetTiming(mCurrentTiming);
             InvokeRepeating(nameof(UpdateDuration), 0.0f, 1.0f);
