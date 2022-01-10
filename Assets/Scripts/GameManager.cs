@@ -90,9 +90,10 @@ namespace COVID_RUSH
                 // TODO: Use an enum to map state-to-code
                 // 1 = scene of level 1
                 SceneManager.LoadScene(++mCurrentLevel);
-                // yield return new WaitForSeconds(1);
-                // StartCountdown();
-                // yield return new WaitForSeconds(4);
+                yield return new WaitForSeconds(1);
+                StartCountdown();
+                yield return new WaitForSeconds(4);
+                EventManager.Notify("onLevelAudio", this, mCurrentLevel);
                 mGameState = GameState.Gaming;
                 StartTiming();
             }
