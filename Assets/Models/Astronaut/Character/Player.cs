@@ -17,6 +17,7 @@ public class Player : MonoBehaviour {
 
 	[SerializeField] ParticleSystem collectParticle = null;
 	[SerializeField] ParticleSystem hitParticle = null;
+	[SerializeField] ParticleSystem jumpParticle = null;
 	public AudioClip clip;
 
 
@@ -74,6 +75,7 @@ public class Player : MonoBehaviour {
 			if (playerState != 2) {
 				moveDirection.y = 10;
 				playerState = 2;
+				jumpParticle.Play();
 			}
 		}
 		else if (Input.GetKeyUp("w") || Input.GetKeyUp("s") || Input.GetKeyUp("a") || Input.GetKeyUp("d") && playerState != 2) {
