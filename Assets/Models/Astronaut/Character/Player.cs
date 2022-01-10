@@ -18,7 +18,6 @@ public class Player : MonoBehaviour {
 	[SerializeField] ParticleSystem collectParticle = null;
 	[SerializeField] ParticleSystem hitParticle = null;
 	[SerializeField] ParticleSystem jumpParticle = null;
-	public AudioClip clip;
 
 
 	void Start() {
