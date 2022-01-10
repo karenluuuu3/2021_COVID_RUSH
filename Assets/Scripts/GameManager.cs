@@ -49,7 +49,7 @@ namespace COVID_RUSH
             MyDeveloperShortCut();
         }
 
-        public bool IsGaming() { return mGameState == GameState.Gaming;  }
+        public bool IsGaming() {return mGameState == GameState.Gaming;}
 
         public void LevelWin()
         {
@@ -184,6 +184,18 @@ namespace COVID_RUSH
         {
             SceneManager.LoadScene(0);
             SwitchToStartScene();
+        }
+
+        private void Update()
+        {
+            if (GameManager.instance.IsGaming())
+            {
+                Cursor.visible = false;
+            }
+            else
+            {
+                Cursor.visible = true;
+            }
         }
     }
 }
