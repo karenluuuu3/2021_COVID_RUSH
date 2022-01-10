@@ -96,6 +96,8 @@ namespace COVID_RUSH
         }
 
         private void UpdateDuration() {
+            if (!GameManager.instance.IsGaming()) return;
+
             mScore.duration++;
             if (!IsLevelEnd())
             {
@@ -164,6 +166,8 @@ namespace COVID_RUSH
 
         private void HandleEnterInfectedArea()
         {
+            if (!GameManager.instance.IsGaming()) return;
+
             ValueBar.UpdateFormat value = new ValueBar.UpdateFormat
             {
                 name = GetCurrentLifeObject().ToString(),
@@ -174,6 +178,8 @@ namespace COVID_RUSH
 
         private void HandleEnemyEnter(object obj)
         {
+            if (!GameManager.instance.IsGaming()) return;
+
             GameObject enemy = (GameObject)obj; 
             if (mEnemySet.Contains(enemy)) return;
 
