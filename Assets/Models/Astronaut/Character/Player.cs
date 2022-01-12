@@ -122,6 +122,8 @@ public class Player : MonoBehaviour {
 
 	private void OnTriggerEnter(Collider col)
 	{
+		if (!GameManager.instance.IsGaming()) return;
+
 		string colliderClass = col.gameObject.tag;
 		if (IsObtainable(colliderClass))
 		{
@@ -153,6 +155,8 @@ public class Player : MonoBehaviour {
 
 	private void OnTriggerStay(Collider col)
 	{
+		if (!GameManager.instance.IsGaming()) return;
+
 		bool isInInfectedArea = (col.gameObject.tag == "Red" || col.gameObject.tag == "Water");
 		if (isInInfectedArea)
 		{
@@ -162,6 +166,8 @@ public class Player : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
 	{
+		if (!GameManager.instance.IsGaming()) return;
+		
 		if (IsHitEnemy(other.gameObject.tag))
 		{
 			mEventStore.Notify("onEnemyLeave", this, other.gameObject);

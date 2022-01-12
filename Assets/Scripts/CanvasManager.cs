@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace COVID_RUSH
 {
@@ -8,6 +9,9 @@ namespace COVID_RUSH
     {
         private Animator mAnimator;
         private EventStore mEventStore = EventStore.instance;
+        [SerializeField]
+        public GameObject Btn;
+        
         public enum PopupType { Idle, Loading, Congratulation, Wasted, Countdown, Dashboard };
 
         void Start()
@@ -35,7 +39,16 @@ namespace COVID_RUSH
         public void Show(object popupType)
         {
             mAnimator.SetInteger("popupType", (int)popupType);
+            /*Time.timeScale = 0;
 
+            IEnumerator func()
+            {
+                mAnimator.SetInteger("popupType", (int)popupType);
+                yield return new WaitForSeconds(2);
+                mEventStore.Notify("onClosePopup", this, PopupType.Dashboard);
+            }
+
+            StartCoroutine(func());*/
             /*if ((PopupType)popupType == PopupType.Dashboard)
             {
                 IEnumerator func()
@@ -51,6 +64,7 @@ namespace COVID_RUSH
         {
             IEnumerator func()
             {
+                if (Btn != null) Btn.SetActive(false);
                 mAnimator.SetInteger("popupType", (int)PopupType.Idle);
                 yield return new WaitForSeconds(duration);
                 mEventStore.Notify("onClosePopup", this, PopupType.Dashboard);
