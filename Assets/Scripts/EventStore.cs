@@ -70,6 +70,7 @@ namespace COVID_RUSH
             }
             foreach (var listener in EventDictionary[eventName])
             {
+                if (listener.owner == null) continue;
                 listener.action(sender, param);
             }
         }

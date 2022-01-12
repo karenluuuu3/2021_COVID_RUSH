@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 2103966894}
-  m_IndirectSpecularColor: {r: 0.43726107, g: 0.75450814, b: 1.0290481, a: 1}
+  m_IndirectSpecularColor: {r: 0.43726084, g: 0.75450844, b: 1.0290486, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -59991,7 +59991,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2653631978668953655, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
       propertyPath: m_Alpha
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2653631978668953655, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
       propertyPath: m_Interactable
@@ -60009,9 +60009,33 @@ PrefabInstance:
       propertyPath: m_IgnoreReversedGraphics
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2876675307131256658, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876675307131256658, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 680
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876675307131256658, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 382
+      objectReference: {fileID: 0}
     - target: {fileID: 5559090092820262532, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
       propertyPath: m_RaycastTarget
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109246447351662429, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109246447351662429, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109246447351662429, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 360
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}

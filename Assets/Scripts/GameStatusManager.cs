@@ -33,6 +33,7 @@ namespace COVID_RUSH
 
     public class GameStatusManager : MonoBehaviour
     {
+        private static GameStatusManager instance;
         private EventStore mEventStore = EventStore.instance;
         private class ItemType
         {
@@ -64,11 +65,33 @@ namespace COVID_RUSH
             mEventStore.Register("onEnemyEnter", this, (_, p) => HandleEnemyEnter(p));
             mEventStore.Register("onSetLevelTiming", this, (_, p) => SetLevelTiming((int) p));
             mEventStore.Register("onStartTiming", this, (_, p) => StartTiming());
+            mEventStore.Register("onBackToMenu", this, (_, p) => HandleReset());
+        }
+
+        public static GameStatusManager Instance
+        {
+            get { return instance; }
         }
 
         void Awake()
         {
-            DontDestroyOnLoad(gameObject);
+            if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                DontDestroyOnLoad(gameObject);
+                // Destroy(instance);
+                // instance = this;
+            }
+        }
+
+        private void HandleReset()
+        {
+            // mEventStore.RemoveLisenterFromAllEvent(this);
+            // Destroy(gameObject);
         }
 
         // TODO: Remove this short-cut
@@ -331,7 +354,7 @@ namespace COVID_RUSH
             mCurrentTiming = timing;
             mScore.time = mCurrentTiming;
             SetTiming(mCurrentTiming);
-            InvokeRepeating(nameof(UpdateDuration), 0.0f, 1.0f);
+            InvokeRepeating(nameof(this.UpdateDuration), 0.0f, 1.0f);
         }
     }
 }

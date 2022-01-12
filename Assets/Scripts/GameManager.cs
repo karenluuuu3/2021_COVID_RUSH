@@ -15,7 +15,7 @@ namespace COVID_RUSH
         public enum GameState : int { Start, Information, Setting, Gaming, Wasted, LevelEnd, Ended }
         private GameState mGameState = GameState.Start;
 
-        public GameManager Instance
+        public static GameManager Instance
         {
             get { return instance; }
         }
@@ -31,6 +31,11 @@ namespace COVID_RUSH
             {
                 instance = this;
                 DontDestroyOnLoad(gameObject);
+                // StaticFlag.hasCreated = true;
+            } else
+            {
+                // Destroy(instance);
+                // instance = this;
             }
         }
 
@@ -183,8 +188,11 @@ namespace COVID_RUSH
 
         private void HandleReset()
         {
+            mCurrentLevel = 0;
             SceneManager.LoadScene(0);
             SwitchToStartScene();
+            EventManager.RemoveLisenterFromAllEvent(this);
+            Destroy(gameObject);
         }
 
         private void Update()
@@ -196,6 +204,11 @@ namespace COVID_RUSH
             else
             {
                 Cursor.visible = true;
+            }
+
+            if (Input.GetKey("escape"))
+            {
+                Application.Quit();
             }
         }
     }

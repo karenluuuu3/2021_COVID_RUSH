@@ -11673,6 +11673,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2876675307131256658, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876675307131256658, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
+      propertyPath: m_ReferenceResolution.x
+      value: 680
+      objectReference: {fileID: 0}
+    - target: {fileID: 2876675307131256658, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
+      propertyPath: m_ReferenceResolution.y
+      value: 382
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109246447351662429, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109246447351662429, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109246447351662429, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 360
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82416641ce6aa1a4c96623197c18bc8f, type: 3}
 --- !u!224 &816731283 stripped
